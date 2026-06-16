@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mihajlosavovic5-lab.github.io/petricevic-law/sitemap.xml

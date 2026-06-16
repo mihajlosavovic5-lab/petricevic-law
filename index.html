@@ -4,6 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advokat Ana Petričević</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5f0e8'/><rect x='2' y='2' width='96' height='96' fill='none' stroke='%23b8975a' stroke-width='4'/><text x='50' y='68' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%231a1a1a' text-anchor='middle'>A<tspan fill='%23b8975a'>P</tspan></text></svg>" />
+
+  <!-- SEO -->
+  <meta name="description" content="Advokat Ana Petričević — krivično pravo, zastupanje pred svim sudovima u Srbiji, Šengen zona, zastarelost, rehabilitacija. Beograd." />
+  <meta name="keywords" content="advokat Beograd, krivično pravo, zastupanje, Šengen zabrana, Ana Petričević" />
+  <meta property="og:title" content="Advokat Ana Petričević" />
+  <meta property="og:description" content="Stručnost, poverenje i posvećenost. Krivično pravo, zastupanje pred svim sudovima, Šengen zona i rehabilitacija." />
+  <meta property="og:image" content="https://mihajlosavovic5-lab.github.io/petricevic-law/1.jpg" />
+  <meta property="og:url" content="https://mihajlosavovic5-lab.github.io/petricevic-law/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Advokat Ana Petričević" />
+  <meta name="twitter:description" content="Stručnost, poverenje i posvećenost. Krivično pravo, zastupanje pred svim sudovima u Srbiji." />
+  <meta name="twitter:image" content="https://mihajlosavovic5-lab.github.io/petricevic-law/1.jpg" />
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -167,8 +184,66 @@
       background: var(--gold);
       transition: width 0.35s ease;
     }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 1.5px;
+      background: var(--dark);
+      display: block;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .mobile-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.35s ease;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+    .mobile-nav a:hover::after { width: 100%; }
 
     .lang-toggle {
       cursor: pointer;
@@ -824,7 +899,8 @@
 
       nav { padding: 16px 24px; }
       nav.scrolled { padding: 12px 24px; }
-      .nav-links { gap: 18px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
 
       #home { grid-template-columns: 1fr; }
       .hero-text { padding: 110px 24px 40px; }
@@ -842,7 +918,111 @@
       #contact { padding: 70px 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
+
+    /* ── KEYBOARD FOCUS ── */
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* ── CURSOR POINTER ── */
+    .case-row, .cred-item, .c-item, .awards-list li { cursor: default; }
+    button, [role="button"], .lang-toggle, .hamburger,
+    .case-link, .btn-primary, .btn-outline,
+    .nav-links a, .mobile-nav a, #backToTop,
+    .contact-form button { cursor: pointer; }
+
+    /* ── COPY BUTTON ── */
+    .copy-btn {
+      background: none;
+      border: none;
+      padding: 0 0 0 8px;
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 0.75rem;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      position: relative;
+    }
+    .copy-btn:hover { opacity: 1; }
+    .copy-btn .copy-tip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      padding: 4px 8px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .copy-btn.copied .copy-tip { opacity: 1; }
+
+    /* ── AWARD TOOLTIPS ── */
+    .awards-list li { position: relative; }
+    .awards-list li[data-tooltip]::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      background: var(--dark);
+      color: rgba(255,255,255,0.85);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      line-height: 1.5;
+      letter-spacing: 0.06em;
+      padding: 8px 14px;
+      max-width: 280px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 10;
+      border-left: 2px solid var(--gold);
+    }
+    .awards-list li[data-tooltip]:hover::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="1.webp" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Advokat Ana Petričević",
+    "url": "https://mihajlosavovic5-lab.github.io/petricevic-law/",
+    "logo": "https://mihajlosavovic5-lab.github.io/petricevic-law/1.jpg",
+    "image": "https://mihajlosavovic5-lab.github.io/petricevic-law/1.jpg",
+    "description": "Advokatska kancelarija specijalizovana za krivično pravo, zastupanje pred svim sudovima u Srbiji, Šengen zona, zastarelost i rehabilitacija.",
+    "telephone": "+381640663838",
+    "email": "petricevic.legal@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Njegoševa 8",
+      "addressLocality": "Beograd",
+      "addressRegion": "Beograd",
+      "addressCountry": "RS"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Ana Petričević",
+      "jobTitle": "Advokat",
+      "alumniOf": "Pravni fakultet Univerziteta u Beogradu"
+    },
+    "areaServed": "RS",
+    "serviceType": ["Krivično pravo", "Zastupanje pred sudovima", "Šengen zona", "Zastarelost", "Rehabilitacija"]
+  }
+  </script>
 </head>
 <body>
 
@@ -896,7 +1076,19 @@
   <button class="lang-toggle" id="langBtn" title="Prebaci na engleski">
     <img id="langFlag" src="https://flagcdn.com/w40/rs.png" alt="Srpski" />
   </button>
+  <button class="hamburger" id="hamburger" aria-label="Otvori meni">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home"    data-sr="Početna"   data-en="Home">Početna</a>
+  <a href="#about"   data-sr="O meni"    data-en="About">O meni</a>
+  <a href="#cases"   data-sr="Slučajevi" data-en="Cases">Slučajevi</a>
+  <a href="#oblasti" data-sr="Usluge"    data-en="Services">Usluge</a>
+  <a href="#contact" data-sr="Kontakt"   data-en="Contact">Kontakt</a>
+</div>
 
 <!-- HERO -->
 <section id="home">
@@ -917,7 +1109,10 @@
     </div>
   </div>
   <div class="hero-image-wrap">
-    <img src="1.jpg" alt="Advokat Ana Petričević" id="heroImg" />
+    <picture>
+      <source srcset="1.webp" type="image/webp" />
+      <img src="1.jpg" alt="Advokat Ana Petričević" id="heroImg" />
+    </picture>
     <div class="hero-image-overlay"></div>
     <div class="hero-badge" id="heroBadge" style="width:220px;">
       <div class="num" style="font-size:1.1rem;line-height:1.3;" data-sr="Student generacije" data-en="Valedictorian">Student generacije</div>
@@ -929,7 +1124,10 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-sticky reveal from-left">
-    <img src="3.jpg" alt="Ana Petričević" class="about-img" />
+    <picture>
+      <source srcset="3.webp" type="image/webp" />
+      <img src="3.jpg" alt="Ana Petričević" class="about-img" loading="lazy" />
+    </picture>
   </div>
   <div class="about-text">
     <p class="section-label reveal" data-sr="O meni" data-en="About me">O meni</p>
@@ -978,11 +1176,11 @@
     <div class="awards-block reveal" style="margin-top:44px;">
       <p class="section-label" style="margin-bottom:20px;" data-sr="Nagrade i priznanja" data-en="Awards & Honours">Nagrade i priznanja</p>
       <ul class="awards-list stagger">
-        <li data-sr="Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića" data-en="Award of the Milivoje Jovanović and Luka Ćelović Endowment">Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića</li>
-        <li data-sr="Bronzana medalja — simulacija suđenja „Moot Court"" data-en="Bronze Medal — Moot Court simulation">Bronzana medalja — simulacija suđenja „Moot Court"</li>
-        <li data-sr="Stipendista Fonda za mlade talente" data-en="Scholar of the Fund for Young Talents">Stipendista Fonda za mlade talente</li>
-        <li data-sr="Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu" data-en="Commendation for Outstanding Achievement, Faculty of Law, University of Belgrade">Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu</li>
-        <li data-sr="Student generacije — prosečna ocena 10,00" data-en="Valedictorian of the generation — GPA 10.00">Student generacije — prosečna ocena 10,00</li>
+        <li data-sr="Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića" data-en="Award of the Milivoje Jovanović and Luka Ćelović Endowment" data-tooltip="Prestižna zadužbina koja od 1935. nagrađuje najboljim studentima prava u Srbiji">Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića</li>
+        <li data-sr="Bronzana medalja — simulacija suđenja „Moot Court"" data-en="Bronze Medal — Moot Court simulation" data-tooltip="Međunarodno takmičenje u simulaciji sudskog postupka — studenti vode stvaran sudski spor pred komisijom profesora i sudija">Bronzana medalja — simulacija suđenja „Moot Court"</li>
+        <li data-sr="Stipendista Fonda za mlade talente" data-en="Scholar of the Fund for Young Talents" data-tooltip="Državna stipendija Vlade Republike Srbije za studente sa prosečnom ocenom 10,00">Stipendista Fonda za mlade talente</li>
+        <li data-sr="Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu" data-en="Commendation for Outstanding Achievement, Faculty of Law, University of Belgrade" data-tooltip="Zvanično pismeno prizanje Pravnog fakulteta koje se retko dodeljuje — samo studentima sa savršenim uspehom">Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu</li>
+        <li data-sr="Student generacije — prosečna ocena 10,00" data-en="Valedictorian of the generation — GPA 10.00" data-tooltip="Najviše akademsko prizanje generacije — dodeljuje se jednom studentu koji je završio studije sa prosekom 10,00">Student generacije — prosečna ocena 10,00</li>
       </ul>
     </div>
   </div>
@@ -1067,7 +1265,7 @@
   <!-- Slučaj 1 -->
   <div class="case-row reveal">
     <div class="case-img-side">
-      <img src="1. slucaj.jpg" alt="Duhovnik Dragutin" style="object-position: center top;" />
+      <img src="1. slucaj.jpg" alt="Duhovnik Dragutin" style="object-position: center top;" loading="lazy" />
       <div class="case-img-overlay"></div>
       <div class="case-number">01</div>
     </div>
@@ -1085,7 +1283,7 @@
   <!-- Slučaj 2 -->
   <div class="case-row reveal">
     <div class="case-img-side">
-      <img src="2 slucaj.webp" alt="Miša Konj — seksualno zlostavljanje maloletnica" style="object-position: center top;" />
+      <img src="2 slucaj.webp" alt="Miša Konj — seksualno zlostavljanje maloletnica" style="object-position: center top;" loading="lazy" />
       <div class="case-img-overlay"></div>
       <div class="case-number">02</div>
     </div>
@@ -1103,7 +1301,7 @@
   <!-- Slučaj 3 -->
   <div class="case-row reveal">
     <div class="case-img-side">
-      <img src="3. slucaj.webp" alt="Apelaciona presuda — Biljana Divac" style="object-position: center top;" />
+      <img src="3. slucaj.webp" alt="Apelaciona presuda — Biljana Divac" style="object-position: center top;" loading="lazy" />
       <div class="case-img-overlay"></div>
       <div class="case-number">03</div>
     </div>
@@ -1121,7 +1319,7 @@
   <!-- Slučaj 4 -->
   <div class="case-row reveal">
     <div class="case-img-side">
-      <img src="pretposlednji slucaj.webp" alt="Pokušaj ubistva Jožefa Bisaka" style="object-position: center center;" />
+      <img src="pretposlednji slucaj.webp" alt="Pokušaj ubistva Jožefa Bisaka" style="object-position: center center;" loading="lazy" />
       <div class="case-img-overlay"></div>
       <div class="case-number">04</div>
     </div>
@@ -1139,7 +1337,7 @@
   <!-- Slučaj 5 — uvek poslednji -->
   <div class="case-row reveal">
     <div class="case-img-side">
-      <img src="poslednji slucaj.webp" alt="Suđenje za ubistvo Miloša Pešića na Ledinama" style="object-position: center top;" />
+      <img src="poslednji slucaj.webp" alt="Suđenje za ubistvo Miloša Pešića na Ledinama" style="object-position: center top;" loading="lazy" />
       <div class="case-img-overlay"></div>
       <div class="case-number">05</div>
     </div>
@@ -1166,7 +1364,10 @@
     <!-- Izjava -->
     <div style="display: flex; gap: 64px; align-items: center;">
       <div class="reveal from-left" style="flex-shrink: 0; width: 380px; overflow: hidden; position: relative;">
-        <img src="izjava.jpeg" alt="Ana Petričević — izjava za medije" style="width:100%; display:block; object-fit:cover; filter: contrast(1.06) saturate(1.04);" />
+        <picture>
+          <source srcset="izjava.webp" type="image/webp" />
+          <img src="izjava.jpeg" alt="Ana Petričević — izjava za medije" style="width:100%; display:block; object-fit:cover; filter: contrast(1.06) saturate(1.04);" loading="lazy" />
+        </picture>
         <div style="position:absolute; inset:0; background: linear-gradient(to top, rgba(184,151,90,0.15) 0%, transparent 60%); pointer-events:none;"></div>
       </div>
       <div class="reveal from-right" style="flex: 1;">
@@ -1196,14 +1397,14 @@
           <div class="c-icon">✉</div>
           <div class="c-item-text">
             <div class="ci-t" data-sr="Email" data-en="Email">Email</div>
-            <div class="ci-v">petricevic.legal@gmail.com</div>
+            <div class="ci-v" style="display:flex;align-items:center;gap:4px;">petricevic.legal@gmail.com<button class="copy-btn" onclick="copyText('petricevic.legal@gmail.com', this)" aria-label="Kopiraj email">⧉<span class="copy-tip">Kopirano!</span></button></div>
           </div>
         </div>
         <div class="c-item">
           <div class="c-icon">☎</div>
           <div class="c-item-text">
             <div class="ci-t" data-sr="Telefon" data-en="Phone">Telefon</div>
-            <div class="ci-v">+381 64 066 3838</div>
+            <div class="ci-v" style="display:flex;align-items:center;gap:4px;">+381 64 066 3838<button class="copy-btn" onclick="copyText('+381640663838', this)" aria-label="Kopiraj telefon">⧉<span class="copy-tip">Kopirano!</span></button></div>
           </div>
         </div>
         <div class="c-item">
@@ -1235,12 +1436,20 @@
           </div>
         </div>
       </div>
-      <form class="contact-form reveal from-right" onsubmit="return false;">
-        <input type="text"  placeholder="Ime i prezime"  data-ph-sr="Ime i prezime"  data-ph-en="Full name" />
-        <input type="email" placeholder="Email adresa"   data-ph-sr="Email adresa"   data-ph-en="Email address" />
-        <textarea           placeholder="Vaša poruka..."  data-ph-sr="Vaša poruka..."  data-ph-en="Your message..."></textarea>
-        <button type="submit" data-sr="Pošaljite poruku" data-en="Send message">Pošaljite poruku</button>
-      </form>
+      <div id="formWrap">
+        <!-- Formspree: registrujte se na formspree.io i zamenite FORM_ID -->
+        <form class="contact-form reveal from-right" id="contactForm">
+          <input type="text"  name="name"    placeholder="Ime i prezime"  data-ph-sr="Ime i prezime"  data-ph-en="Full name" required />
+          <input type="email" name="email"   placeholder="Email adresa"   data-ph-sr="Email adresa"   data-ph-en="Email address" required />
+          <textarea           name="message" placeholder="Vaša poruka..."  data-ph-sr="Vaša poruka..."  data-ph-en="Your message..." required></textarea>
+          <button type="submit" id="formBtn" data-sr="Pošaljite poruku" data-en="Send message">Pošaljite poruku</button>
+        </form>
+        <div id="formSuccess" style="display:none; text-align:center; padding:60px 0;">
+          <div style="width:54px; height:54px; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; color:var(--gold); font-size:1.4rem;">✓</div>
+          <p style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:600; color:var(--dark); margin-bottom:12px;" data-sr="Poruka je poslata!" data-en="Message sent!">Poruka je poslata!</p>
+          <p style="font-size:1rem; font-weight:300; color:var(--text-light);" data-sr="Javićemo Vam se u najkraćem roku." data-en="We will get back to you shortly.">Javićemo Vam se u najkraćem roku.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1366,6 +1575,76 @@
       el.placeholder = lang === 'sr' ? el.getAttribute('data-ph-sr') : el.getAttribute('data-ph-en');
     });
     document.documentElement.lang = lang;
+  }
+
+  // ── COPY TO CLIPBOARD ──
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 1800);
+    });
+  }
+
+  // ── ACTIVE NAV LINK ──
+  const navSectionIds = ['home', 'about', 'oblasti', 'cases', 'izjave', 'contact'];
+  const navLinkEls = document.querySelectorAll('.nav-links a');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinkEls.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  navSectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  // ── MOBILE MENU ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── CONTACT FORM (Formspree) ──
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('formBtn');
+      const origText = btn.textContent;
+      btn.textContent = '...';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xpwzogwk', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = lang === 'sr' ? 'Greška — pokušajte ponovo' : 'Error — please try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = lang === 'sr' ? 'Greška — pokušajte ponovo' : 'Error — please try again';
+        btn.disabled = false;
+      }
+    });
   }
 </script>
 </body>
