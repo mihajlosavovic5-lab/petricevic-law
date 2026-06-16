@@ -38,15 +38,6 @@
       --nav-bg: rgba(245,240,232,0.97);
     }
 
-    [data-theme="dark"] {
-      --cream: #141414;
-      --dark: #f0ebe0;
-      --text: #d0c8b8;
-      --text-light: #8a8070;
-      --bg-white: #1e1e1e;
-      --nav-bg: rgba(20,20,20,0.97);
-    }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -932,20 +923,6 @@
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    /* ── DARK MODE TOGGLE ── */
-    .theme-toggle {
-      background: none;
-      border: 1px solid rgba(184,151,90,0.4);
-      width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      color: var(--gold);
-      font-size: 0.85rem;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
-      flex-shrink: 0;
-    }
-    .theme-toggle:hover { background: var(--gold); color: white; }
-
     /* ── TYPING EFFECT ── */
     .typing-wrap { display: inline-flex; align-items: center; gap: 2px; }
     .typing-cursor {
@@ -1145,7 +1122,6 @@
     <li><a href="#oblasti" data-sr="Usluge" data-en="Services">Usluge</a></li>
     <li><a href="#contact" data-sr="Kontakt"  data-en="Contact">Kontakt</a></li>
   </ul>
-  <button class="theme-toggle" id="themeBtn" aria-label="Prebaci temu" title="Dark mode">☽</button>
   <button class="lang-toggle" id="langBtn" title="Prebaci na engleski">
     <img id="langFlag" src="https://flagcdn.com/w40/rs.png" alt="Srpski" />
   </button>
@@ -1656,29 +1632,6 @@
     });
     document.documentElement.lang = lang;
   }
-
-  // ── DARK MODE ──
-  const themeBtn = document.getElementById('themeBtn');
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  if (savedTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    themeBtn.textContent = '☀';
-    themeBtn.title = 'Light mode';
-  }
-  themeBtn.addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
-      themeBtn.textContent = '☽';
-      themeBtn.title = 'Dark mode';
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeBtn.textContent = '☀';
-      themeBtn.title = 'Light mode';
-      localStorage.setItem('theme', 'dark');
-    }
-  });
 
   // ── TYPING EFFECT ──
   const wordsSr = ['Advokat', 'Branilac', 'Punomoćnik'];
