@@ -850,6 +850,27 @@
 <!-- PROGRESS BAR -->
 <div id="progress-bar"></div>
 
+<!-- BACK TO TOP -->
+<a href="#home" id="backToTop" style="
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 1rem;
+  z-index: 150;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, color 0.3s;
+  pointer-events: none;
+" onmouseover="this.style.background='var(--gold)';this.style.color='white';" onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">↑</a>
+
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-monogram">A<span>P</span></div>
@@ -869,6 +890,7 @@
     <li><a href="#home"    data-sr="Početna"  data-en="Home">Početna</a></li>
     <li><a href="#about"   data-sr="O meni"   data-en="About">O meni</a></li>
     <li><a href="#cases"   data-sr="Slučajevi" data-en="Cases">Slučajevi</a></li>
+    <li><a href="#oblasti" data-sr="Usluge" data-en="Services">Usluge</a></li>
     <li><a href="#contact" data-sr="Kontakt"  data-en="Contact">Kontakt</a></li>
   </ul>
   <button class="lang-toggle" id="langBtn" title="Prebaci na engleski">
@@ -878,7 +900,7 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-text">
+  <div class="hero-text" style="position:relative;">
     <p class="hero-eyebrow">
       <span class="clip-reveal" data-sr="Advokat · Beograd, Srbija" data-en="Attorney at Law · Belgrade, Serbia">Advokat · Beograd, Srbija</span>
     </p>
@@ -888,16 +910,16 @@
     </h1>
     <p class="hero-title reveal" style="transition-delay:0.35s" data-sr="Advokat" data-en="Attorney at Law">Advokat</p>
     <div class="hero-divider" id="heroDivider"></div>
-    <p class="hero-desc reveal" style="transition-delay:0.5s" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
-    <div class="reveal hero-btns" style="transition-delay:0.65s">
-      <a href="#contact" class="btn-primary" data-sr="Kontaktirajte me" data-en="Get in touch">Kontaktirajte me</a>
-      <a href="#about"   class="btn-outline"  data-sr="O meni"          data-en="Learn more">O meni</a>
+    <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 190px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
+    <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:80px; left:80px; width:340px;">
+      <a href="#contact" class="btn-primary" style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="Kontaktirajte me" data-en="Get in touch">Kontaktirajte me</a>
+      <a href="#about"   class="btn-outline"  style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="O meni"          data-en="Learn more">O meni</a>
     </div>
   </div>
   <div class="hero-image-wrap">
     <img src="1.jpg" alt="Advokat Ana Petričević" id="heroImg" />
     <div class="hero-image-overlay"></div>
-    <div class="hero-badge" id="heroBadge">
+    <div class="hero-badge" id="heroBadge" style="width:220px;">
       <div class="num" style="font-size:1.1rem;line-height:1.3;" data-sr="Student generacije" data-en="Valedictorian">Student generacije</div>
       <div class="lbl" data-sr="Pravni fakultet · Beograd" data-en="Faculty of Law · Belgrade">Pravni fakultet · Beograd</div>
     </div>
@@ -935,12 +957,22 @@
         <div class="ci-val" data-sr="Pravosudni i advokatski ispit" data-en="Judicial &amp; Bar Exam">Pravosudni i advokatski ispit</div>
       </div>
     <!-- YouTube video -->
-    <div class="reveal" style="margin-top:44px; margin-bottom:44px;">
-      <p class="section-label" style="margin-bottom:16px;" data-sr="Emisija" data-en="TV Feature">Emisija</p>
-      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
+    <div style="margin-top:44px; margin-bottom:44px;">
+      <p class="section-label reveal" style="margin-bottom:16px;" data-sr="Emisija" data-en="TV Feature">Emisija</p>
+      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
         <iframe src="https://www.youtube.com/embed/H2P8zK9Ub7c" title="Šampioni znanja — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
-      <p style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px;" data-sr="Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet" data-en="TV show „Šampioni znanja" — TV Brainz / Faculty of Law">Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet</p>
+      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px; margin-bottom:24px;" data-sr="Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet" data-en="TV show „Šampioni znanja" — TV Brainz / Faculty of Law">Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet</p>
+
+      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
+        <iframe src="https://www.youtube.com/embed/1tfqAN7jiIs?t=78" title="Emisija — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px; margin-bottom:24px;">LINK VIP – Pravnica koja je uzor mladim ljudima · Epizoda 20</p>
+
+      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
+        <iframe src="https://www.youtube.com/embed/mrAcHlwP_Ug?t=368" title="Emisija — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px;">STUDENICA PODKAST – Fabula docet · Možeš! Veruj! Uspećeš! · Epizoda 4</p>
     </div>
 
     <div class="awards-block reveal" style="margin-top:44px;">
@@ -982,31 +1014,31 @@
     </div>
 
     <!-- Specijalizovane usluge -->
-    <div style="border-top: 1px solid rgba(184,151,90,0.2); padding-top: 56px;">
+    <div class="reveal" style="border-top: 1px solid rgba(184,151,90,0.2); padding-top: 56px;">
       <p class="section-label reveal" style="color:var(--gold); text-align:center; margin-bottom:44px;" data-sr="Specijalizovane usluge" data-en="Specialised Services">Specijalizovane usluge</p>
-      <div class="stagger" style="display:grid; grid-template-columns: 1fr 1fr; gap: 28px;">
-        <div style="display:flex; gap:20px; align-items:flex-start;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+        <div class="reveal from-left" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">⚖</div>
           <div>
             <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Šengen zona" data-en="Schengen Zone">Šengen zona</p>
             <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.7);" data-sr="Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima." data-en="Lifting and removal of entry bans to the Schengen Zone — representing clients in proceedings before the competent foreign authorities.">Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima.</p>
           </div>
         </div>
-        <div style="display:flex; gap:20px; align-items:flex-start;">
+        <div class="reveal from-right" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">⏳</div>
           <div>
             <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Zastarelost" data-en="Statute of Limitations">Zastarelost</p>
             <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.7);" data-sr="Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca." data-en="The statute of limitations in criminal law entails the loss of the state's right to prosecute or enforce a sentence after the statutory period has elapsed — and is general in nature, regardless of the type of offence or offender.">Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca.</p>
           </div>
         </div>
-        <div style="display:flex; gap:20px; align-items:flex-start;">
+        <div class="reveal from-left" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">✦</div>
           <div>
             <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Rehabilitacija" data-en="Rehabilitation">Rehabilitacija</p>
             <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.7);" data-sr="Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva." data-en="Rehabilitation entails the reinstatement of a convicted person's former status and the erasure of their criminal past — with the aim of eliminating the discriminatory effects of a conviction and enabling the person to become a full member of society.">Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva.</p>
           </div>
         </div>
-        <div style="display:flex; gap:20px; align-items:flex-start;">
+        <div class="reveal from-right" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">◈</div>
           <div>
             <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Konsultantske usluge" data-en="Legal Consultancy">Konsultantske usluge</p>
@@ -1131,29 +1163,13 @@
       <h2 class="section-title reveal" data-sr="Stav struke" data-en="Expert Opinion">Stav struke</h2>
       <div class="section-divider reveal" style="margin: 0 auto;"></div>
     </div>
-    <!-- Izjava 1 -->
-    <div class="reveal" style="display: flex; gap: 64px; align-items: center; margin-bottom: 80px;">
-      <div style="flex-shrink: 0; width: 380px; overflow: hidden; position: relative;">
+    <!-- Izjava -->
+    <div style="display: flex; gap: 64px; align-items: center;">
+      <div class="reveal from-left" style="flex-shrink: 0; width: 380px; overflow: hidden; position: relative;">
         <img src="izjava.jpeg" alt="Ana Petričević — izjava za medije" style="width:100%; display:block; object-fit:cover; filter: contrast(1.06) saturate(1.04);" />
         <div style="position:absolute; inset:0; background: linear-gradient(to top, rgba(184,151,90,0.15) 0%, transparent 60%); pointer-events:none;"></div>
       </div>
-      <div style="flex: 1;">
-        <div style="border-left: 3px solid var(--gold); padding-left: 36px;">
-          <p style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; font-style:italic; color:var(--dark); line-height:1.5; margin-bottom: 28px;" data-sr="Mere praćenja učinilaca krivičnih dela protiv polne slobode" data-en="Monitoring measures for sexual offenders">"Mere praćenja učinilaca krivičnih dela protiv polne slobode"</p>
-          <p style="font-size:1.05rem; font-weight:300; line-height:1.95; color:var(--text); margin-bottom: 20px;" data-sr="Mere praćenja učinilaca krivičnih dela protiv polne slobode postoje u Srbiji od 2013. godine, kada su uvedene posebnim zakonom. Međutim, one se primenjuju samo kada su žrtve maloletna lica — i to u vidu obaveznog javljanja policiji i Upravi za izvršenje krivičnih sankcija, posećivanja savetovališta i obaveštavanja o promeni boravišta. Na taj način država kontroliše učinioce i do 20 godina nakon izdržane kazne." data-en="Monitoring measures for sexual offenders have existed in Serbia since 2013, introduced by a special law. However, they apply only when the victims are minors — through mandatory reporting to the police and the Prison Administration, mandatory counselling visits, and notification of changes of residence. In this way, the state can monitor offenders for up to 20 years after serving their sentence.">Mere praćenja učinilaca krivičnih dela protiv polne slobode postoje u Srbiji od 2013. godine, kada su uvedene posebnim zakonom. Međutim, one se primenjuju samo kada su žrtve maloletna lica — i to u vidu obaveznog javljanja policiji i Upravi za izvršenje krivičnih sankcija, posećivanja savetovališta i obaveštavanja o promeni boravišta. Na taj način država kontroliše učinioce i do 20 godina nakon izdržane kazne.</p>
-          <p style="font-size:1.05rem; font-weight:300; line-height:1.95; color:var(--text); margin-bottom: 32px;" data-sr="Ovoj vrsti kontrole formalno ne podležu učinioci čije su žrtve punoletna lica — i propise bi trebalo u tom pogledu izmeniti. Svakako da policija ima načina da spreči serijske silovatelje primenom operativnih mera praćenja i prismotre u neformalnom obliku." data-en="Offenders whose victims are adults are formally not subject to this type of monitoring — and the regulations should be amended accordingly. The police do have means to prevent serial rapists through operational surveillance and monitoring in an informal capacity.">Ovoj vrsti kontrole formalno ne podležu učinioci čije su žrtve punoletna lica — i propise bi trebalo u tom pogledu izmeniti. Svakako da policija ima načina da spreči serijske silovatelje primenom operativnih mera praćenja i prismotre u neformalnom obliku.</p>
-          <p style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">— Ana Petričević, advokat</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Izjava 2 -->
-    <div class="reveal" style="display: flex; gap: 64px; align-items: center;">
-      <div style="flex-shrink: 0; width: 380px; overflow: hidden; position: relative;">
-        <img src="izjava.jpeg" alt="Ana Petričević — izjava za medije" style="width:100%; display:block; object-fit:cover; filter: contrast(1.06) saturate(1.04);" />
-        <div style="position:absolute; inset:0; background: linear-gradient(to top, rgba(184,151,90,0.15) 0%, transparent 60%); pointer-events:none;"></div>
-      </div>
-      <div style="flex: 1;">
+      <div class="reveal from-right" style="flex: 1;">
         <div style="border-left: 3px solid var(--gold); padding-left: 36px;">
           <p style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; font-style:italic; color:var(--dark); line-height:1.5; margin-bottom: 10px;" data-sr="Mere praćenja učinilaca krivičnih dela na slobodi" data-en="Monitoring measures for offenders at large">"Mere praćenja učinilaca krivičnih dela na slobodi"</p>
           <p style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-light); margin-bottom: 24px;">Srpski Telegraf · 29. septembar 2022.</p>
@@ -1198,10 +1214,24 @@
           </div>
         </div>
         <div class="c-item">
-          <div class="c-icon" style="font-size:0.85rem;font-family:'Montserrat',sans-serif;font-weight:600;">IG</div>
+          <div class="c-icon" style="font-size:0.75rem;font-family:'Montserrat',sans-serif;font-weight:600;">IG</div>
           <div class="c-item-text">
             <div class="ci-t">Instagram</div>
-            <div class="ci-v"><a href="https://instagram.com/petricevic_law" target="_blank" style="color:var(--dark);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dark)'">@petricevic_law</a></div>
+            <div class="ci-v"><a href="https://www.instagram.com/petricevic_law/" target="_blank" style="color:var(--dark);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dark)'">@petricevic_law</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon" style="font-size:0.75rem;font-family:'Montserrat',sans-serif;font-weight:600;">FB</div>
+          <div class="c-item-text">
+            <div class="ci-t">Facebook</div>
+            <div class="ci-v"><a href="https://www.facebook.com/ana.petricevic.92/" target="_blank" style="color:var(--dark);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dark)'">Ana Petričević</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon" style="font-size:0.75rem;font-family:'Montserrat',sans-serif;font-weight:600;">in</div>
+          <div class="c-item-text">
+            <div class="ci-t">LinkedIn</div>
+            <div class="ci-v"><a href="https://www.linkedin.com/posts/ana-petri%C4%8Devi%C4%87-501642183_advokat-pravosuafne-kriviafjnopravnaodbrana-share-7394352118293344257-TjHi/" target="_blank" style="color:var(--dark);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dark)'">Ana Petričević</a></div>
           </div>
         </div>
       </div>
@@ -1215,77 +1245,16 @@
   </div>
 </section>
 
-<!-- U MEDIJIMA -->
-<section id="mediji" style="background: white; padding: 100px 80px;">
-  <div style="max-width: 1000px; margin: 0 auto;">
-    <div style="text-align:center; margin-bottom: 64px;">
-      <p class="section-label reveal" data-sr="Medijska pokrivenost" data-en="Media Coverage">Medijska pokrivenost</p>
-      <h2 class="section-title reveal" data-sr="U medijima" data-en="In the media">U medijima</h2>
-      <div class="section-divider reveal" style="margin: 0 auto;"></div>
-    </div>
-    <div class="stagger" style="display:flex; flex-direction:column; gap:2px;">
-
-      <a href="https://www.novosti.rs/vesti/hronika/924687/nesvakidasnja-prevara-izradila-rodjaka-tetka-lagala-duhovnik-uzela-100-000" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:var(--cream); text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#f0ebe0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--cream)'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Novosti · 2020</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Tetka lagala da je duhovnik — uzela 100.000 evra od rođaka" data-en="Aunt pretended to be a spiritual guide — took €100,000 from relatives">Tetka lagala da je duhovnik — uzela 100.000 evra od rođaka</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.espreso.co.rs/vesti/hronika/639613/prevara-tetka-vidovnjakinja-porodica" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:white; text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#fafafa'" onmouseout="this.style.borderColor='transparent';this.style.background='white'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Espreso · 2020</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Ovakva prevara nije viđena u Srbiji — tetka vidovnjakinja" data-en="A fraud like this has never been seen in Serbia — the fortune-teller aunt">Ovakva prevara nije viđena u Srbiji — tetka vidovnjakinja</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.novosti.rs/hronika/sudjenja/1095338/duhovnik-dragutin-ide-zatvor-sud-kragujevcu-osudio-biljanu-divac-dve-godine-zbog-prevare-sms-porukama-izigravala-vidovnjaka" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:var(--cream); text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#f0ebe0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--cream)'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Novosti · 2022</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Duhovnik Dragutin ide u zatvor — Biljana Divac osuđena" data-en="Spiritual guide Dragutin goes to prison — Biljana Divac convicted">Duhovnik Dragutin ide u zatvor — Biljana Divac osuđena</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.kurir.rs/crna-hronika/3889497/biljana-divac-duhovnik-dragutin-prevara-novac-kragujevac" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:white; text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#fafafa'" onmouseout="this.style.borderColor='transparent';this.style.background='white'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Kurir · 2022</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Biljana Divac osuđena za prevaru — Duhovnik Dragutin" data-en="Biljana Divac convicted for fraud — Spiritual guide Dragutin">Biljana Divac osuđena za prevaru — Duhovnik Dragutin</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://udarnavest.rs/2022/09/14/najmladja-zrtva-mise-konja-imala-samo-13-godina-osumnjicenom-za-silovanje-maloletnica-odredjen-pritvor/" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:var(--cream); text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#f0ebe0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--cream)'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Udarna vest · 2022</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Najmlađa žrtva Miše Konja imala samo 13 godina" data-en="Youngest victim of Miša Konj was only 13 years old">Najmlađa žrtva Miše Konja imala samo 13 godina</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.republika.rs/hronika/hronika/383694/biljana-divac-osudjena-cetiri-godine-zatvora" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:white; text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#fafafa'" onmouseout="this.style.borderColor='transparent';this.style.background='white'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Republika · 2022</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Biljana Divac osuđena na četiri godine zatvora" data-en="Biljana Divac sentenced to four years in prison">Biljana Divac osuđena na četiri godine zatvora</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.republika.rs/hronika/hronika/705739/ubistvo-jozef-bisak-obustavljena-istraga" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:var(--cream); text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#f0ebe0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--cream)'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Republika · 2024</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Jožef Bisak — istraga obustavljena" data-en="Jožef Bisak — investigation dismissed">Jožef Bisak — istraga obustavljena</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.novosti.rs/hronika/sudjenja/1607448/zrtvu-sasuto-14-metaka-kamere-snimile-napadaca-pocelo-sudjenje-ubistvo-milosa-pesica-ledinama" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:white; text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#fafafa'" onmouseout="this.style.borderColor='transparent';this.style.background='white'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Novosti · 2026</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Suđenje za ubistvo Miloša Pešića na Ledinama — u žrtvu sasuto 14 metaka" data-en="Trial for the murder of Miloš Pešić in Ledine — 14 bullets fired at victim">Suđenje za ubistvo Miloša Pešića na Ledinama — u žrtvu sasuto 14 metaka</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-      <a href="https://www.novosti.rs/vesti/naslovna/reportaze/aktuelno.293.html:711804-Par-stvoren-za-desetke" target="_blank" style="display:flex; align-items:center; gap:24px; padding:22px 28px; background:var(--cream); text-decoration:none; border-left:3px solid transparent; transition:border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.background='#f0ebe0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--cream)'">
-        <span style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; width:110px;">Novosti · 2018</span>
-        <span style="font-size:1rem; font-weight:300; color:var(--dark); line-height:1.5;" data-sr="Student generacije — par stvoren za desetke" data-en="Valedictorian — a couple made for perfect scores">Student generacije — par stvoren za desetke</span>
-        <span style="margin-left:auto; color:var(--gold); font-size:1rem; flex-shrink:0;">→</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">A<span>P</span></div>
+  <div style="display:flex; justify-content:center; gap:28px; margin-bottom:20px;">
+    <a href="https://www.instagram.com/petricevic_law/" target="_blank" style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Instagram</a>
+    <span style="color:rgba(255,255,255,0.15);">·</span>
+    <a href="https://www.facebook.com/ana.petricevic.92/" target="_blank" style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Facebook</a>
+    <span style="color:rgba(255,255,255,0.15);">·</span>
+    <a href="https://www.linkedin.com/posts/ana-petri%C4%8Devi%C4%87-501642183_advokat-pravosuafne-kriviafjnopravnaodbrana-share-7394352118293344257-TjHi/" target="_blank" style="font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">LinkedIn</a>
+  </div>
   <p data-sr="© 2026 Advokat <span>Ana Petričević</span>. Sva prava zadržana." data-en="© 2026 Attorney at Law <span>Ana Petričević</span>. All rights reserved.">© 2026 Advokat <span>Ana Petričević</span>. Sva prava zadržana.</p>
 </footer>
 
@@ -1317,6 +1286,20 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── BACK TO TOP ──
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backToTop.style.opacity = '1';
+      backToTop.style.transform = 'translateY(0)';
+      backToTop.style.pointerEvents = 'auto';
+    } else {
+      backToTop.style.opacity = '0';
+      backToTop.style.transform = 'translateY(12px)';
+      backToTop.style.pointerEvents = 'none';
+    }
   });
 
   // ── PARALLAX HERO IMAGE ──
@@ -1354,7 +1337,7 @@
     // reset & show loader
     loaderLine.style.animation = 'none';
     loaderLine.offsetHeight; // reflow
-    loaderLine.style.animation = 'loaderExpand 1s ease forwards';
+    loaderLine.style.animation = 'loaderExpand 0.3s ease forwards';
     loader.classList.remove('hidden');
 
     setTimeout(() => {
@@ -1370,8 +1353,8 @@
         langBtn.title = 'Switch to Serbian';
       }
       applyLang();
-      setTimeout(() => loader.classList.add('hidden'), 400);
-    }, 800);
+      setTimeout(() => loader.classList.add('hidden'), 200);
+    }, 350);
   });
 
   function applyLang() {
