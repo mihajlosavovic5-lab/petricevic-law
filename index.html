@@ -34,6 +34,17 @@
       --dark: #1a1a1a;
       --text: #3a3a3a;
       --text-light: #6b6b6b;
+      --bg-white: #ffffff;
+      --nav-bg: rgba(245,240,232,0.97);
+    }
+
+    [data-theme="dark"] {
+      --cream: #141414;
+      --dark: #f0ebe0;
+      --text: #d0c8b8;
+      --text-light: #8a8070;
+      --bg-white: #1e1e1e;
+      --nav-bg: rgba(20,20,20,0.97);
     }
 
     html { scroll-behavior: smooth; }
@@ -106,7 +117,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 22px 60px;
-      background: rgba(245, 240, 232, 0.97);
+      background: var(--nav-bg);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(184, 151, 90, 0.15);
       transition: padding 0.4s ease, box-shadow 0.4s ease;
@@ -475,7 +486,7 @@
       grid-template-columns: 1fr 1.5fr;
       gap: 80px;
       align-items: start;
-      background: white;
+      background: var(--bg-white);
     }
 
     .section-label {
@@ -839,7 +850,7 @@
     .contact-form textarea {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
-      background: white;
+      background: var(--bg-white);
       border: 1px solid rgba(184,151,90,0.25);
       border-bottom: 1px solid rgba(184,151,90,0.5);
       padding: 14px 18px;
@@ -919,6 +930,65 @@
 
       #contact { padding: 70px 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── DARK MODE TOGGLE ── */
+    .theme-toggle {
+      background: none;
+      border: 1px solid rgba(184,151,90,0.4);
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--gold);
+      font-size: 0.85rem;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--gold); color: white; }
+
+    /* ── TYPING EFFECT ── */
+    .typing-wrap { display: inline-flex; align-items: center; gap: 2px; }
+    .typing-cursor {
+      display: inline-block;
+      width: 1.5px;
+      height: 1em;
+      background: var(--gold);
+      animation: blink 0.75s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── ESTIMATED READ TIME ── */
+    .read-time {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      #loader, nav, #backToTop, #progress-bar,
+      .lang-toggle, .hamburger, .mobile-nav,
+      .theme-toggle, .hero-btns, .copy-btn,
+      iframe, .case-link { display: none !important; }
+      body { background: white !important; color: black !important; font-size: 11pt; }
+      #home { min-height: auto; grid-template-columns: 1fr; }
+      .hero-image-wrap { display: none; }
+      .hero-text { padding: 20px 0; }
+      #about { padding: 20px 0; grid-template-columns: 1fr; gap: 20px; }
+      .about-sticky { display: none; }
+      section, .case-row { page-break-inside: avoid; }
+      #cases, #oblasti, #quote-strip { background: white !important; }
+      .case-info-side { background: white !important; border: 1px solid #ccc !important; }
+      .case-title, .quote-text, .section-title { color: black !important; }
+      .case-text, .case-quote { color: #333 !important; }
+      footer { display: none; }
+      a[href]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #666; }
+      .case-link::after { content: none; }
     }
 
     /* ── KEYBOARD FOCUS ── */
@@ -1075,6 +1145,7 @@
     <li><a href="#oblasti" data-sr="Usluge" data-en="Services">Usluge</a></li>
     <li><a href="#contact" data-sr="Kontakt"  data-en="Contact">Kontakt</a></li>
   </ul>
+  <button class="theme-toggle" id="themeBtn" aria-label="Prebaci temu" title="Dark mode">☽</button>
   <button class="lang-toggle" id="langBtn" title="Prebaci na engleski">
     <img id="langFlag" src="https://flagcdn.com/w40/rs.png" alt="Srpski" />
   </button>
@@ -1102,7 +1173,9 @@
       <span class="line"><span class="clip-reveal" style="transition-delay:0.1s">Ana</span></span>
       <span class="line"><span class="clip-reveal" style="transition-delay:0.2s">Petričević</span></span>
     </h1>
-    <p class="hero-title reveal" style="transition-delay:0.35s" data-sr="Advokat" data-en="Attorney at Law">Advokat</p>
+    <p class="hero-title reveal" style="transition-delay:0.35s">
+      <span class="typing-wrap"><span id="typingText">Advokat</span><span class="typing-cursor"></span></span>
+    </p>
     <div class="hero-divider" id="heroDivider"></div>
     <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 190px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
     <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:80px; left:80px; width:340px;">
@@ -1272,6 +1345,7 @@
       <div class="case-number">01</div>
     </div>
     <div class="case-info-side">
+      <p class="read-time" data-sr="⏱ 2 min čitanja" data-en="⏱ 2 min read">⏱ 2 min čitanja</p>
       <p class="case-tag" data-sr="Krivično pravo · Punomoćnik oštećenih · 2020" data-en="Criminal Law · Victim's Counsel · 2020">Krivično pravo · Punomoćnik oštećenih · 2020</p>
       <h3 class="case-title" data-sr='Prevara „Duhovnik Dragutin"' data-en='"Spiritual Guide Dragutin" Fraud'>Prevara „Duhovnik Dragutin"</h3>
       <div class="case-divider"></div>
@@ -1290,6 +1364,7 @@
       <div class="case-number">02</div>
     </div>
     <div class="case-info-side">
+      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
       <p class="case-tag" data-sr="Krivično pravo · Zastupanje oštećenih · 2022" data-en="Criminal Law · Victim's Counsel · 2022">Krivično pravo · Zastupanje oštećenih · 2022</p>
       <h3 class="case-title" data-sr="Najmlađa žrtva Miše Konja imala samo 13 godina" data-en="Youngest Victim of 'Miša Konj' Was Only 13 Years Old">Najmlađa žrtva Miše Konja imala samo 13 godina</h3>
       <div class="case-divider"></div>
@@ -1308,6 +1383,7 @@
       <div class="case-number">03</div>
     </div>
     <div class="case-info-side">
+      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
       <p class="case-tag" data-sr="Krivično pravo · Punomoćnik oštećenih · Apelacioni sud Kragujevac" data-en="Criminal Law · Victim's Counsel · Court of Appeal Kragujevac">Krivično pravo · Punomoćnik oštećenih · Apelacioni sud Kragujevac</p>
       <h3 class="case-title" data-sr="Prevarantkinja Biljana Divac osuđena na četiri godine" data-en="Fraudster Biljana Divac Sentenced to Four Years">Prevarantkinja Biljana Divac osuđena na četiri godine</h3>
       <div class="case-divider"></div>
@@ -1326,6 +1402,7 @@
       <div class="case-number">04</div>
     </div>
     <div class="case-info-side">
+      <p class="read-time" data-sr="⏱ 2 min čitanja" data-en="⏱ 2 min read">⏱ 2 min čitanja</p>
       <p class="case-tag" data-sr="Krivično pravo · Odbrana · 2024" data-en="Criminal Law · Defence · 2024">Krivično pravo · Odbrana · 2024</p>
       <h3 class="case-title" data-sr="Pokušaj ubistva Jožefa Bisaka" data-en="Attempted Murder of Jožef Bisak">Pokušaj ubistva Jožefa Bisaka</h3>
       <div class="case-divider"></div>
@@ -1344,6 +1421,7 @@
       <div class="case-number">05</div>
     </div>
     <div class="case-info-side">
+      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
       <p class="case-tag" data-sr="Krivično pravo · Odbrana · 2026" data-en="Criminal Law · Defence · 2026">Krivično pravo · Odbrana · 2026</p>
       <h3 class="case-title" data-sr="U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića" data-en="14 Bullets Fired at Victim — Trial for the Murder of Miloš Pešić">U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića</h3>
       <div class="case-divider"></div>
@@ -1578,6 +1656,62 @@
     });
     document.documentElement.lang = lang;
   }
+
+  // ── DARK MODE ──
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeBtn.textContent = '☀';
+    themeBtn.title = 'Light mode';
+  }
+  themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      themeBtn.textContent = '☽';
+      themeBtn.title = 'Dark mode';
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeBtn.textContent = '☀';
+      themeBtn.title = 'Light mode';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // ── TYPING EFFECT ──
+  const wordsSr = ['Advokat', 'Branilac', 'Punomoćnik'];
+  const wordsEn = ['Attorney at Law', 'Defence Counsel', 'Legal Advocate'];
+  const typingEl = document.getElementById('typingText');
+  let wordIdx = 0, charIdx = 0, deleting = false, typingPaused = false;
+
+  function typeLoop() {
+    if (typingPaused) return;
+    const words = lang === 'sr' ? wordsSr : wordsEn;
+    const current = words[wordIdx];
+    if (!deleting) {
+      charIdx++;
+      typingEl.textContent = current.slice(0, charIdx);
+      if (charIdx === current.length) {
+        typingPaused = true;
+        setTimeout(() => { typingPaused = false; deleting = true; typeLoop(); }, 2200);
+        return;
+      }
+      setTimeout(typeLoop, 80);
+    } else {
+      charIdx--;
+      typingEl.textContent = current.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+        setTimeout(typeLoop, 320);
+        return;
+      }
+      setTimeout(typeLoop, 45);
+    }
+  }
+  setTimeout(typeLoop, 2200);
 
   // ── COPY TO CLIPBOARD ──
   function copyText(text, btn) {
