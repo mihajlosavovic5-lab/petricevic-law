@@ -923,18 +923,6 @@
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    /* ── TYPING EFFECT ── */
-    .typing-wrap { display: inline-flex; align-items: center; gap: 2px; }
-    .typing-cursor {
-      display: inline-block;
-      width: 1.5px;
-      height: 1em;
-      background: var(--gold);
-      animation: blink 0.75s step-end infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
     /* ── ESTIMATED READ TIME ── */
     .read-time {
@@ -1149,9 +1137,7 @@
       <span class="line"><span class="clip-reveal" style="transition-delay:0.1s">Ana</span></span>
       <span class="line"><span class="clip-reveal" style="transition-delay:0.2s">Petričević</span></span>
     </h1>
-    <p class="hero-title reveal" style="transition-delay:0.35s">
-      <span class="typing-wrap"><span id="typingText">Advokat</span><span class="typing-cursor"></span></span>
-    </p>
+    <p class="hero-title reveal" style="transition-delay:0.35s" data-sr="Advokat" data-en="Attorney at Law">Advokat</p>
     <div class="hero-divider" id="heroDivider"></div>
     <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 190px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
     <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:80px; left:80px; width:340px;">
@@ -1632,39 +1618,6 @@
     });
     document.documentElement.lang = lang;
   }
-
-  // ── TYPING EFFECT ──
-  const wordsSr = ['Advokat', 'Branilac', 'Punomoćnik'];
-  const wordsEn = ['Attorney at Law', 'Defence Counsel', 'Legal Advocate'];
-  const typingEl = document.getElementById('typingText');
-  let wordIdx = 0, charIdx = 0, deleting = false, typingPaused = false;
-
-  function typeLoop() {
-    if (typingPaused) return;
-    const words = lang === 'sr' ? wordsSr : wordsEn;
-    const current = words[wordIdx];
-    if (!deleting) {
-      charIdx++;
-      typingEl.textContent = current.slice(0, charIdx);
-      if (charIdx === current.length) {
-        typingPaused = true;
-        setTimeout(() => { typingPaused = false; deleting = true; typeLoop(); }, 2200);
-        return;
-      }
-      setTimeout(typeLoop, 80);
-    } else {
-      charIdx--;
-      typingEl.textContent = current.slice(0, charIdx);
-      if (charIdx === 0) {
-        deleting = false;
-        wordIdx = (wordIdx + 1) % words.length;
-        setTimeout(typeLoop, 320);
-        return;
-      }
-      setTimeout(typeLoop, 45);
-    }
-  }
-  setTimeout(typeLoop, 2200);
 
   // ── COPY TO CLIPBOARD ──
   function copyText(text, btn) {
