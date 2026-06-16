@@ -1348,18 +1348,30 @@
   const langBtn = document.getElementById('langBtn');
 
   langBtn.addEventListener('click', () => {
-    lang = lang === 'sr' ? 'en' : 'sr';
-    const flagImg = document.getElementById('langFlag');
-    if (lang === 'sr') {
-      flagImg.src = 'https://flagcdn.com/w40/rs.png';
-      flagImg.alt = 'Srpski';
-      langBtn.title = 'Prebaci na engleski';
-    } else {
-      flagImg.src = 'https://flagcdn.com/w40/gb.png';
-      flagImg.alt = 'English';
-      langBtn.title = 'Switch to Serbian';
-    }
-    applyLang();
+    const loader = document.getElementById('loader');
+    const loaderLine = loader.querySelector('.loader-line');
+
+    // reset & show loader
+    loaderLine.style.animation = 'none';
+    loaderLine.offsetHeight; // reflow
+    loaderLine.style.animation = 'loaderExpand 1s ease forwards';
+    loader.classList.remove('hidden');
+
+    setTimeout(() => {
+      lang = lang === 'sr' ? 'en' : 'sr';
+      const flagImg = document.getElementById('langFlag');
+      if (lang === 'sr') {
+        flagImg.src = 'https://flagcdn.com/w40/rs.png';
+        flagImg.alt = 'Srpski';
+        langBtn.title = 'Prebaci na engleski';
+      } else {
+        flagImg.src = 'https://flagcdn.com/w40/gb.png';
+        flagImg.alt = 'English';
+        langBtn.title = 'Switch to Serbian';
+      }
+      applyLang();
+      setTimeout(() => loader.classList.add('hidden'), 400);
+    }, 800);
   });
 
   function applyLang() {
