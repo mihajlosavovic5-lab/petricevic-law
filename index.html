@@ -297,14 +297,18 @@
 
     /* ── HERO ── */
     #home {
-      min-height: 100vh;
+      height: 800px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: center;
+      align-items: stretch;
+      overflow: hidden;
     }
 
     .hero-text {
-      padding: 120px 60px 80px 80px;
+      padding: 0px 60px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero-eyebrow {
@@ -425,7 +429,7 @@
 
     .hero-image-wrap {
       position: relative;
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
     }
     .hero-image-wrap img {
@@ -445,7 +449,7 @@
 
     .hero-badge {
       position: absolute;
-      bottom: 50px;
+      bottom: 135px;
       left: -24px;
       background: white;
       padding: 20px 28px;
@@ -475,12 +479,14 @@
 
     /* ── ABOUT ── */
     #about {
-      padding: 120px 80px 60px;
+      padding: 80px 80px 20px;
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       gap: 80px;
       align-items: start;
       background: var(--bg-white);
+      position: relative;
+      z-index: 1;
     }
 
     .section-label {
@@ -606,130 +612,103 @@
 
 
     /* ── CASES ── */
-    #cases { padding: 120px 0 60px; background: #2e2b28; }
+    #cases { padding: 80px 0 0; background: #2e2b28; }
 
     .cases-header {
-      text-align: center;
-      margin-bottom: 80px;
-      padding: 0 80px;
-    }
-    .cases-header .section-label { color: var(--gold); }
-    .cases-header .section-title { color: white; }
-    .cases-header .section-divider { margin: 0 auto; }
-
-    .case-row {
       display: flex;
-      min-height: 320px;
-      position: relative;
-      overflow: hidden;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      padding: 0 80px;
+      gap: 40px;
     }
-    .case-row.reverse { flex-direction: row-reverse; }
-
-    .case-img-side {
-      position: relative;
-      overflow: hidden;
-      width: 300px;
+    .cases-header-left {
+      border-left: 3px solid var(--gold);
+      padding-left: 24px;
+    }
+    .cases-header-left .cases-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .cases-header-left .section-title {
+      color: white;
+      font-size: 2.8rem;
+      margin: 0;
+    }
+    .cases-header-right {
+      max-width: 280px;
+      padding-bottom: 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      text-align: right;
       flex-shrink: 0;
     }
-    .case-img-side img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: grayscale(20%) contrast(1.05);
-      transition: transform 0.7s ease, filter 0.5s ease;
-    }
-    .case-row:hover .case-img-side img {
-      transform: scale(1.04);
-      filter: grayscale(0%) contrast(1.05);
-    }
-    .case-img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(26,26,26,0.4) 0%, transparent 60%);
-    }
-    .case-number {
-      position: absolute;
-      bottom: 24px;
-      left: 28px;
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.08);
-      line-height: 1;
-      pointer-events: none;
-    }
 
-    .case-info-side {
-      background: #383430;
-      padding: 50px 54px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      flex: 1;
-      border-left: 3px solid var(--gold);
-    }
-    .case-row.reverse .case-info-side {
-      border-left: none;
-      border-right: 3px solid var(--gold);
-    }
-
+    /* Shared case typography */
     .case-tag {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .case-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
       font-weight: 600;
-      color: white;
-      line-height: 1.25;
-      margin-bottom: 20px;
+      color: #ffffff;
+      line-height: 1.22;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
     .case-divider {
       width: 36px; height: 1px;
       background: var(--gold);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .case-text {
-      font-size: 1.15rem;
+      font-size: 0.98rem;
       font-weight: 400;
-      line-height: 2.0;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 28px;
+      line-height: 1.95;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 24px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
     .case-result {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--dark);
       background: var(--gold);
-      padding: 9px 16px;
+      padding: 8px 14px;
       display: inline-block;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .case-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.08rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
       font-style: italic;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.75);
       line-height: 1.65;
       border-left: none;
       padding: 0;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
     .case-link {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -742,16 +721,110 @@
     }
     .case-link:hover { gap: 14px; color: white; }
     .case-link::after { content: '→'; }
+    .read-time { display: none; }
+
+    /* ── CINEMATIC CASE — shared base ── */
+    .ce-film {
+      position: relative;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-top: 1px solid rgba(184,151,90,0.18);
+    }
+    .ce-film .ce-bg {
+      position: absolute; inset: 0;
+    }
+    .ce-film .ce-bg img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: filter 0.9s ease, transform 0.9s ease;
+      background: #1a1816;
+    }
+    .ce-film .ce-overlay {
+      position: absolute; inset: 0;
+    }
+    .ce-film .ce-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 80px 100px;
+    }
+    .ce-film .case-title { font-size: 1.72rem; }
+    .ce-film .case-divider { margin-bottom: 20px; }
+
+    /* Per-case image treatment & overlay direction */
+    .ce-film-01 .ce-bg img {
+      object-position: center top;
+      filter: grayscale(25%) contrast(1.06) brightness(0.28);
+    }
+    .ce-film-01:hover .ce-bg img { filter: grayscale(10%) contrast(1.06) brightness(0.38); transform: scale(1.04); }
+    .ce-film-01 .ce-overlay {
+      background: linear-gradient(to right, rgba(14,12,10,0.98) 0%, rgba(14,12,10,0.82) 50%, rgba(14,12,10,0.65) 100%);
+    }
+    .ce-film-01 .ce-content { max-width: 640px; }
+
+    .ce-film-02 .ce-bg img {
+      object-position: center top;
+      filter: grayscale(20%) contrast(1.05) brightness(0.3);
+    }
+    .ce-film-02:hover .ce-bg img { filter: grayscale(5%) contrast(1.05) brightness(0.4); transform: scale(1.04); }
+    .ce-film-02 .ce-overlay {
+      background: linear-gradient(to left, rgba(14,12,10,0.98) 0%, rgba(14,12,10,0.82) 50%, rgba(14,12,10,0.65) 100%);
+    }
+    .ce-film-02 .ce-content { max-width: 640px; margin-left: auto; text-align: right; }
+    .ce-film-02 .case-divider { margin-left: auto; }
+
+    .ce-film-03 .ce-bg img {
+      object-position: center top;
+      filter: grayscale(30%) contrast(1.05) brightness(0.26);
+    }
+    .ce-film-03:hover .ce-bg img { filter: grayscale(10%) contrast(1.05) brightness(0.36); transform: scale(1.03); }
+    .ce-film-03 .ce-overlay {
+      background: radial-gradient(ellipse at center, rgba(14,12,10,0.72) 0%, rgba(14,12,10,0.97) 75%);
+    }
+    .ce-film-03 .ce-content { max-width: 700px; margin: 0 auto; text-align: center; }
+    .ce-film-03 .case-divider { margin: 0 auto 20px; }
+
+    .ce-film-04 .ce-bg img {
+      object-position: center center;
+      filter: grayscale(20%) contrast(1.06) brightness(0.28);
+    }
+    .ce-film-04:hover .ce-bg img { filter: grayscale(5%) contrast(1.06) brightness(0.38); transform: scale(1.04); }
+    .ce-film-04 .ce-overlay {
+      background: linear-gradient(135deg, rgba(14,12,10,0.99) 0%, rgba(14,12,10,0.82) 50%, rgba(14,12,10,0.94) 100%);
+    }
+    .ce-film-04 .ce-content { max-width: 580px; }
+
+    .ce-film-05 { min-height: 600px; }
+    .ce-film-05 .ce-bg img {
+      object-position: center top;
+      filter: grayscale(15%) contrast(1.07) brightness(0.25);
+    }
+    .ce-film-05:hover .ce-bg img { filter: grayscale(0%) contrast(1.07) brightness(0.35); transform: scale(1.03); }
+    .ce-film-05 .ce-overlay {
+      background: linear-gradient(to right, rgba(14,12,10,0.98) 0%, rgba(14,12,10,0.78) 40%, rgba(14,12,10,0.98) 100%);
+    }
+    .ce-film-05 .ce-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .ce-film-05 .ce-col-left { border-left: 3px solid var(--gold); padding-left: 32px; padding-top: 4px; }
+    .ce-film-05 .case-title { font-size: 1.9rem; margin-bottom: 0; }
 
     @media (max-width: 920px) {
-      #cases { padding: 70px 0; }
+      #cases { padding: 70px 0 0; }
       .cases-header { padding: 0 24px; margin-bottom: 50px; }
-      .case-row { grid-template-columns: 1fr; min-height: auto; }
-      .case-row:nth-child(odd)  .case-img-side,
-      .case-row:nth-child(even) .case-img-side  { order: 1; height: 260px; }
-      .case-row:nth-child(odd)  .case-info-side,
-      .case-row:nth-child(even) .case-info-side { order: 2; padding: 36px 24px; }
-      .case-info-side::before { top: 0; bottom: auto; left: 0; width: 100%; height: 3px; }
+      .ce-film { min-height: auto; }
+      .ce-film .ce-bg img { object-fit: cover; filter: grayscale(20%) contrast(1.05) brightness(0.28) !important; }
+      .ce-film .ce-bg { height: 100%; min-height: 480px; }
+      .ce-film .ce-overlay { background: rgba(14,12,10,0.88) !important; }
+      .ce-film .ce-num-bg { display: none; }
+      .ce-film .ce-content,
+      .ce-film-02 .ce-content { max-width: 100%; margin: 0; padding: 56px 28px; text-align: left; }
+      .ce-film-02 .case-divider { margin-left: 0; }
+      .ce-film-03 .ce-content { text-align: left; }
+      .ce-film-03 .case-divider { margin: 0 0 20px; }
+      .ce-film-05 .ce-content { grid-template-columns: 1fr; gap: 32px; }
+      .ce-film-05 .ce-col-left { border-left: none; padding-left: 0; border-bottom: 1px solid rgba(184,151,90,0.3); padding-bottom: 32px; }
+      .ce-film-05 .case-title { font-size: 1.5rem; }
     }
 
     /* ── CONTACT ── */
@@ -897,21 +970,24 @@
       margin-bottom: 14px;
     }
 
-    /* ── SVG DIAGONAL DIVIDERS ── */
-    .svg-divider {
-      position: relative;
-      margin-bottom: -2px;
-      line-height: 0;
-      overflow: hidden;
+
+
+
+
+
+    /* ── GOLD BORDERS ON DARK SECTIONS ── */
+    #oblasti, #cases, #contact { position: relative; }
+    #oblasti::before, #cases::before, #contact::before,
+    #oblasti::after,  #cases::after,  #contact::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: rgba(184,151,90,0.2);
+      z-index: 10;
     }
-    .svg-divider svg {
-      display: block;
-      width: 100%;
-      height: 60px;
-    }
-    @media (max-width: 768px) {
-      .svg-divider svg { height: 35px; }
-    }
+    #oblasti::before, #cases::before, #contact::before { top: 0; }
+    #oblasti::after,  #cases::after,  #contact::after  { bottom: 0; }
 
     /* ── INLINE QUOTE ── */
     .inline-quote {
@@ -1141,7 +1217,7 @@
     <p class="hero-title reveal" style="transition-delay:0.35s" data-sr="Advokat" data-en="Attorney at Law">Advokat</p>
     <div class="hero-divider" id="heroDivider"></div>
     <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 190px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
-    <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:80px; left:80px; width:340px;">
+    <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:140px; left:80px; width:340px;">
       <a href="#contact" class="btn-primary" style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="Kontaktirajte me" data-en="Get in touch">Kontaktirajte me</a>
       <a href="#about"   class="btn-outline"  style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="O meni"          data-en="Learn more">O meni</a>
     </div>
@@ -1227,15 +1303,9 @@
       </ul>
     </div>
   </div>
-  <div class="svg-divider">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-      <polygon points="0,0 1440,60 0,60" fill="#2e2b28"/>
-    </svg>
-  </div>
 </section>
-
 <!-- OBLASTI PRAKSE -->
-<section id="oblasti" style="background: #2e2b28; padding: 120px 80px;">
+<section id="oblasti" style="background: #2e2b28; padding: 80px 80px;">
   <div style="max-width: 1100px; margin: 0 auto;">
     <div style="text-align:center; margin-bottom: 72px;">
       <p class="section-label reveal" style="color:var(--gold);" data-sr="Oblasti prakse" data-en="Practice Areas">Oblasti prakse</p>
@@ -1299,118 +1369,103 @@
 <!-- CASES -->
 <section id="cases">
   <div class="cases-header">
-    <p class="section-label reveal" data-sr="Uspešni slučajevi" data-en="Notable Cases">Uspešni slučajevi</p>
-    <h2 class="section-title reveal" data-sr="Rezultati koji govore" data-en="Results that speak">Rezultati koji govore</h2>
-    <div class="section-divider reveal" style="margin:0 auto;"></div>
+    <div class="cases-header-left reveal">
+      <p class="cases-eyebrow" data-sr="Krivično pravo · Advokat Petričević" data-en="Criminal Law · Attorney Petričević">Krivično pravo · Advokat Petričević</p>
+      <h2 class="section-title" data-sr="Uspešni slučajevi" data-en="Notable Cases">Uspešni slučajevi</h2>
+    </div>
+    <div class="cases-header-right reveal" data-sr="Predmeti u kojima je advokat Petričević ostavila trag — odlučnim zastupanjem i stručnim radom." data-en="Cases in which attorney Petričević made her mark — through decisive advocacy and expert work.">Predmeti u kojima je advokat Petričević ostavila trag — odlučnim zastupanjem i stručnim radom.</div>
   </div>
 
-  <!-- Slučaj 1 -->
-  <div class="case-row reveal">
-    <div class="case-img-side">
-      <img src="1. slucaj.jpg" alt="Duhovnik Dragutin" style="object-position: center top;" loading="lazy" />
-      <div class="case-img-overlay"></div>
-      <div class="case-number">01</div>
-    </div>
-    <div class="case-info-side">
-      <p class="read-time" data-sr="⏱ 2 min čitanja" data-en="⏱ 2 min read">⏱ 2 min čitanja</p>
+  <!-- Slučaj 1 — tekst levo, slika desno svetli -->
+  <div class="ce-film ce-film-01 reveal">
+    <div class="ce-bg"><img src="1. slucaj.jpg" alt="Duhovnik Dragutin" loading="lazy" /></div>
+    <div class="ce-overlay"></div>
+
+    <div class="ce-content">
       <p class="case-tag" data-sr="Krivično pravo · Punomoćnik oštećenih · 2020" data-en="Criminal Law · Victim's Counsel · 2020">Krivično pravo · Punomoćnik oštećenih · 2020</p>
       <h3 class="case-title" data-sr='Prevara „Duhovnik Dragutin"' data-en='"Spiritual Guide Dragutin" Fraud'>Prevara „Duhovnik Dragutin"</h3>
       <div class="case-divider"></div>
-      <p class="case-text" data-sr="Tetka je dve i po godine, lažno se predstavljajući kao duhovnik, na prevaru izvukla više od 100.000 evra od petočlane porodice. Advokat Petričević je kao punomoćnik oštećenih uspešno zastupala njihove interese pred Osnovnim sudom u Kragujevcu." data-en="Posing as a spiritual guide, the perpetrator fraudulently extracted over €100,000 from a five-member family over two and a half years. Attorney Petričević successfully represented the victims before the Basic Court in Kragujevac.">Tetka je dve i po godine, lažno se predstavljajući kao duhovnik, na prevaru izvukla više od 100.000 evra od petočlane porodice. Advokat Petričević je kao punomoćnik oštećenih uspešno zastupala njihove interese pred Osnovnim sudom u Kragujevcu.</p>
+      <p class="case-text" data-sr="Lažni duhovnik prevario petočlanu porodicu za više od 100.000 evra. Advokat Petričević je kao punomoćnik oštećenih uspešno zastupala njihove interese i obezbedila povraćaj imovine." data-en="A fake spiritual guide defrauded a family of over €100,000. Attorney Petričević represented the victims and secured full restitution.">Lažni duhovnik prevario petočlanu porodicu za više od 100.000 evra. Advokat Petričević je kao punomoćnik oštećenih uspešno zastupala njihove interese i obezbedila povraćaj imovine.</p>
       <div class="case-result" data-sr="2,5 god. zatvora · Kazna 200.000 din. · Povraćaj imovinske koristi" data-en="2.5 yrs imprisonment · Fine 200,000 RSD · Full restitution ordered">2,5 god. zatvora · Kazna 200.000 din. · Povraćaj imovinske koristi</div>
       <blockquote class="case-quote" data-sr="&ldquo;Oštećeni su zadovoljni ishodom, posebno što je sud odlučio i o imovinsko-pravnom zahtevu.&rdquo;" data-en="&ldquo;The victims are satisfied with the outcome, especially since the court also ruled on the civil claim.&rdquo;">&ldquo;Oštećeni su zadovoljni ishodom, posebno što je sud odlučio i o imovinsko-pravnom zahtevu.&rdquo;</blockquote>
       <a href="https://www.novosti.rs/hronika/sudjenja/1095338/duhovnik-dragutin-ide-zatvor-sud-kragujevcu-osudio-biljanu-divac-dve-godine-zbog-prevare-sms-porukama-izigravala-vidovnjaka" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
     </div>
   </div>
 
-  <!-- Slučaj 2 -->
-  <div class="case-row reveal">
-    <div class="case-img-side">
-      <img src="2 slucaj.webp" alt="Miša Konj — seksualno zlostavljanje maloletnica" style="object-position: center top;" loading="lazy" />
-      <div class="case-img-overlay"></div>
-      <div class="case-number">02</div>
-    </div>
-    <div class="case-info-side">
-      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
+  <!-- Slučaj 2 — tekst desno -->
+  <div class="ce-film ce-film-02 reveal">
+    <div class="ce-bg"><img src="2 slucaj.webp" alt="Miša Konj" loading="lazy" /></div>
+    <div class="ce-overlay"></div>
+
+    <div class="ce-content">
       <p class="case-tag" data-sr="Krivično pravo · Zastupanje oštećenih · 2022" data-en="Criminal Law · Victim's Counsel · 2022">Krivično pravo · Zastupanje oštećenih · 2022</p>
       <h3 class="case-title" data-sr="Najmlađa žrtva Miše Konja imala samo 13 godina" data-en="Youngest Victim of 'Miša Konj' Was Only 13 Years Old">Najmlađa žrtva Miše Konja imala samo 13 godina</h3>
       <div class="case-divider"></div>
-      <p class="case-text" data-sr="Bivši vlasnik konjičkog kluba i trener jahanja Miloš Đukić — poznat kao Miša konj — optužen je da je u periodu od 2010. do 2021. izvršio silovanje, pokušaj silovanja, polno uznemiravanje i nedozvoljene polne radnje prema sedam polaznica škole jahanja, od kojih je pet bilo maloletno. Advokat Petričević je u predmetu iznela pravnu analizu zapretenih kazni, pojašnjavajući da za silovanje maloletnika preti od pet do 15 godina zatvora, a da objedinjena maksimalna kazna može dostići 20 godina." data-en="The former owner of a riding club and riding trainer Miloš Đukić — known as Miša Konj — was charged with committing rape, attempted rape, sexual harassment and unlawful sexual acts against seven of his pupils between 2010 and 2021, five of whom were minors at the time. Attorney Petričević provided legal analysis of the applicable penalties in the case, explaining that rape of a minor carries five to fifteen years in prison, and that the combined maximum sentence could reach 20 years.">Bivši vlasnik konjičkog kluba i trener jahanja Miloš Đukić — poznat kao Miša konj — optužen je da je u periodu od 2010. do 2021. izvršio silovanje, pokušaj silovanja, polno uznemiravanje i nedozvoljene polne radnje prema sedam polaznica škole jahanja, od kojih je pet bilo maloletno. Advokat Petričević je u predmetu iznela pravnu analizu zapretenih kazni, pojašnjavajući da za silovanje maloletnika preti od pet do 15 godina zatvora, a da objedinjena maksimalna kazna može dostići 20 godina.</p>
+      <p class="case-text" data-sr="Trener jahanja optužen za silovanje sedam polaznica, od kojih je pet maloletno. Advokat Petričević iznela pravnu analizu u slučaju — maksimalna kazna može dostići 20 godina zatvora." data-en="A riding instructor charged with assaulting seven pupils, five of them minors. Attorney Petričević provided key legal analysis — the combined maximum sentence could reach 20 years.">Trener jahanja optužen za silovanje sedam polaznica, od kojih je pet maloletno. Advokat Petričević iznela pravnu analizu u slučaju — maksimalna kazna može dostići 20 godina zatvora.</p>
       <div class="case-result" data-sr="Određen pritvor · Kazna do 20 godina zatvora" data-en="Pre-trial detention ordered · Up to 20 years imprisonment">Određen pritvor · Kazna do 20 godina zatvora</div>
       <blockquote class="case-quote" data-sr="&ldquo;Za pokušaj silovanja se kažnjava kao i za dovršeno krivično delo jer zakonik zabranjuje ublažavanje kazne kod ovog dela.&rdquo;" data-en="&ldquo;Attempted rape is punished the same as completed rape, as the law prohibits any mitigation of sentence for this offence.&rdquo;">&ldquo;Za pokušaj silovanja se kažnjava kao i za dovršeno krivično delo jer zakonik zabranjuje ublažavanje kazne kod ovog dela.&rdquo;</blockquote>
       <a href="https://udarnavest.rs/2022/09/14/najmladja-zrtva-mise-konja-imala-samo-13-godina-osumnjicenom-za-silovanje-maloletnica-odredjen-pritvor/" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
     </div>
   </div>
 
-  <!-- Slučaj 3 -->
-  <div class="case-row reveal">
-    <div class="case-img-side">
-      <img src="3. slucaj.webp" alt="Apelaciona presuda — Biljana Divac" style="object-position: center top;" loading="lazy" />
-      <div class="case-img-overlay"></div>
-      <div class="case-number">03</div>
-    </div>
-    <div class="case-info-side">
-      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
+  <!-- Slučaj 3 — tekst u centru, radijalni overlay -->
+  <div class="ce-film ce-film-03 reveal">
+    <div class="ce-bg"><img src="3. slucaj.webp" alt="Apelaciona presuda — Biljana Divac" loading="lazy" /></div>
+    <div class="ce-overlay"></div>
+
+    <div class="ce-content">
       <p class="case-tag" data-sr="Krivično pravo · Punomoćnik oštećenih · Apelacioni sud Kragujevac" data-en="Criminal Law · Victim's Counsel · Court of Appeal Kragujevac">Krivično pravo · Punomoćnik oštećenih · Apelacioni sud Kragujevac</p>
       <h3 class="case-title" data-sr="Prevarantkinja Biljana Divac osuđena na četiri godine" data-en="Fraudster Biljana Divac Sentenced to Four Years">Prevarantkinja Biljana Divac osuđena na četiri godine</h3>
       <div class="case-divider"></div>
-      <p class="case-text" data-sr='Apelacioni sud u Kragujevcu po žalbi na prvostepenu presudu potvrdio je krivicu Biljane Divac i izrekao joj kaznu od četiri godine zatvora. Zastupnica oštećene porodice, beogradski advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, ponosna je što će prevarantkinja skupo platiti zlodelo: „Najbitnije je da se porodici vrati novac koji im je osuđena uzela na prevaru." Zbog najtežeg oblika krivičnog dela prevare, izrečena joj je i novčana kazna od 200.000 dinara, a obavezana je da u roku od 90 dana od pravnosnažnosti presude oštećenima vrati 12.015.948,76 dinara.' data-en='The Court of Appeal in Kragujevac upheld the conviction of Biljana Divac on appeal against the first-instance judgment and sentenced her to four years in prison. The victims&apos; counsel, Belgrade attorney <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, is proud that the fraudster will pay dearly for her crime: "Most importantly, the family will get back the money that the convicted woman took from them by fraud." For the most serious form of the criminal offence of fraud, she was also fined 200,000 dinars and ordered to return 12,015,948.76 dinars to the victims within 90 days of the judgment becoming final.'>Apelacioni sud u Kragujevcu po žalbi na prvostepenu presudu potvrdio je krivicu Biljane Divac i izrekao joj kaznu od četiri godine zatvora. Zastupnica oštećene porodice, beogradski advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, ponosna je što će prevarantkinja skupo platiti zlodelo: „Najbitnije je da se porodici vrati novac koji im je osuđena uzela na prevaru." Zbog najtežeg oblika krivičnog dela prevare, izrečena joj je i novčana kazna od 200.000 dinara, a obavezana je da u roku od 90 dana od pravnosnažnosti presude oštećenima vrati 12.015.948,76 dinara.</p>
+      <p class="case-text" data-sr='Apelacioni sud potvrdio presudu — četiri godine zatvora i povraćaj 12 miliona dinara. Advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span> kao zastupnica oštećenih obezbedila puni epilog za svoju klijentkinju.' data-en='The Court of Appeal confirmed the verdict — four years and restitution of 12 million dinars. Attorney <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, representing the victims, secured a complete outcome for her client.'>Apelacioni sud potvrdio presudu — četiri godine zatvora i povraćaj 12 miliona dinara. Advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span> kao zastupnica oštećenih obezbedila puni epilog za svoju klijentkinju.</p>
       <div class="case-result" data-sr="4 god. zatvora · Novčana kazna 200.000 din. · Povraćaj 12.015.948,76 din." data-en="4 yrs imprisonment · Fine 200,000 RSD · Restitution of 12,015,948.76 RSD">4 god. zatvora · Novčana kazna 200.000 din. · Povraćaj 12.015.948,76 din.</div>
       <blockquote class="case-quote" data-sr="&ldquo;Najbitnije je da se porodici vrati novac koji im je osuđena uzela na prevaru.&rdquo; — Ana Petričević" data-en="&ldquo;Most importantly, the family will get back the money that the convicted woman took from them by fraud.&rdquo; — Ana Petričević">&ldquo;Najbitnije je da se porodici vrati novac koji im je osuđena uzela na prevaru.&rdquo; — Ana Petričević</blockquote>
       <a href="https://www.republika.rs/hronika/hronika/383694/biljana-divac-osudjena-cetiri-godine-zatvora" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
     </div>
   </div>
 
-  <!-- Slučaj 4 -->
-  <div class="case-row reveal">
-    <div class="case-img-side">
-      <img src="pretposlednji slucaj.webp" alt="Pokušaj ubistva Jožefa Bisaka" style="object-position: center center;" loading="lazy" />
-      <div class="case-img-overlay"></div>
-      <div class="case-number">04</div>
-    </div>
-    <div class="case-info-side">
-      <p class="read-time" data-sr="⏱ 2 min čitanja" data-en="⏱ 2 min read">⏱ 2 min čitanja</p>
+  <!-- Slučaj 4 — tekst levo, dijagonalni overlay -->
+  <div class="ce-film ce-film-04 reveal">
+    <div class="ce-bg"><img src="pretposlednji slucaj.webp" alt="Pokušaj ubistva Jožefa Bisaka" loading="lazy" /></div>
+    <div class="ce-overlay"></div>
+
+    <div class="ce-content">
       <p class="case-tag" data-sr="Krivično pravo · Odbrana · 2024" data-en="Criminal Law · Defence · 2024">Krivično pravo · Odbrana · 2024</p>
       <h3 class="case-title" data-sr="Pokušaj ubistva Jožefa Bisaka" data-en="Attempted Murder of Jožef Bisak">Pokušaj ubistva Jožefa Bisaka</h3>
       <div class="case-divider"></div>
-      <p class="case-text" data-sr="U predmetu koji je izazvao veliko interesovanje javnosti, doneta je odluka o obustavi istrage prema branjeniku. Istrajnim i stručnim radom odbrana je uverila tužilaštvo da su prvobitni navodi bili neosnovani." data-en="In a high-profile case, the investigation against the defendant was dismissed. Through persistent expert work, the defence convinced the prosecution that the initial allegations were unfounded.">U predmetu koji je izazvao veliko interesovanje javnosti, doneta je odluka o obustavi istrage prema branjeniku. Istrajnim i stručnim radom odbrana je uverila tužilaštvo da su prvobitni navodi bili neosnovani.</p>
+      <p class="case-text" data-sr="Visokoprofilni predmet u kom je advokat Petričević kao branioc uspela da ubedi tužilaštvo da odustane — istraga obustavljena, branjenik slobodan." data-en="A high-profile case in which attorney Petričević, as defence counsel, successfully convinced the prosecution to withdraw — the investigation was dismissed and the client freed.">Visokoprofilni predmet u kom je advokat Petričević kao branioc uspela da ubedi tužilaštvo da odustane — istraga obustavljena, branjenik slobodan.</p>
       <div class="case-result" data-sr="Istraga obustavljena" data-en="Investigation dismissed">Istraga obustavljena</div>
       <blockquote class="case-quote" data-sr="&ldquo;Odbrana dokazala nevinost — aktivna uloga branioca dovela do potpune promene procesne slike.&rdquo;" data-en="&ldquo;The defence proved innocence — the active role of the counsel led to a complete reversal of proceedings.&rdquo;">&ldquo;Odbrana dokazala nevinost — aktivna uloga branioca dovela do potpune promene procesne slike.&rdquo;</blockquote>
       <a href="https://www.republika.rs/hronika/hronika/705739/ubistvo-jozef-bisak-obustavljena-istraga" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
     </div>
   </div>
 
-  <!-- Slučaj 5 — uvek poslednji -->
-  <div class="case-row reveal">
-    <div class="case-img-side">
-      <img src="poslednji slucaj.webp" alt="Suđenje za ubistvo Miloša Pešića na Ledinama" style="object-position: center top;" loading="lazy" />
-      <div class="case-img-overlay"></div>
-      <div class="case-number">05</div>
+  <!-- Slučaj 5 — dvostubački finale, uvek poslednji -->
+  <div class="ce-film ce-film-05 reveal">
+    <div class="ce-bg"><img src="poslednji slucaj.webp" alt="Suđenje za ubistvo Miloša Pešića na Ledinama" loading="lazy" /></div>
+    <div class="ce-overlay"></div>
+
+    <div class="ce-content">
+      <div class="ce-col-left">
+        <p class="case-tag" data-sr="Krivično pravo · Odbrana · 2026" data-en="Criminal Law · Defence · 2026">Krivično pravo · Odbrana · 2026</p>
+        <h3 class="case-title" data-sr="U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića" data-en="14 Bullets Fired at Victim — Trial for the Murder of Miloš Pešić">U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića</h3>
+      </div>
+      <div>
+        <div class="case-divider"></div>
+        <p class="case-text" data-sr='Suđenje za ubistvo počinjeno iz zasede — 14 metaka ispaljeno iz pištolja sa prigušivačem. Advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span> vodi odbranu i aktivno pobija dokaze tužilaštva na svakom pretresu.' data-en='Trial for a murder committed from ambush — 14 rounds fired from a silenced pistol. Attorney <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span> leads the defence and actively challenges the prosecution&apos;s evidence at every hearing.'>Suđenje za ubistvo počinjeno iz zasede — 14 metaka ispaljeno iz pištolja sa prigušivačem. Advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span> vodi odbranu i aktivno pobija dokaze tužilaštva na svakom pretresu.</p>
+        <div class="case-result" data-sr="Suđenje u toku · Viši sud Beograd · 2026" data-en="Trial ongoing · Higher Court Belgrade · 2026">Suđenje u toku · Viši sud Beograd · 2026</div>
+        <blockquote class="case-quote" data-sr="&ldquo;Aktivnom odbranom i preciznim ispitivanjem svedoka osiguravamo da svaka činjenica bude temeljno proverena pred sudom.&rdquo;" data-en="&ldquo;Through active defence and precise cross-examination, we ensure that every fact is thoroughly verified before the court.&rdquo;">&ldquo;Aktivnom odbranom i preciznim ispitivanjem svedoka osiguravamo da svaka činjenica bude temeljno proverena pred sudom.&rdquo;</blockquote>
+        <a href="https://www.novosti.rs/hronika/sudjenja/1607448/zrtvu-sasuto-14-metaka-kamere-snimile-napadaca-pocelo-sudjenje-ubistvo-milosa-pesica-ledinama" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
+      </div>
     </div>
-    <div class="case-info-side">
-      <p class="read-time" data-sr="⏱ 3 min čitanja" data-en="⏱ 3 min read">⏱ 3 min čitanja</p>
-      <p class="case-tag" data-sr="Krivično pravo · Odbrana · 2026" data-en="Criminal Law · Defence · 2026">Krivično pravo · Odbrana · 2026</p>
-      <h3 class="case-title" data-sr="U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića" data-en="14 Bullets Fired at Victim — Trial for the Murder of Miloš Pešić">U žrtvu sasuto 14 metaka — suđenje za ubistvo Miloša Pešića</h3>
-      <div class="case-divider"></div>
-      <p class="case-text" data-sr='Pred Višim sudom u Beogradu počelo je suđenje Srđanu Pejdiću, optuženom da je 29. jula 2025. godine na Ledinama u zasedi sačekao Miloša Pešića i u njega ispalio 14 metaka iz pištolja sa prigušivačem. Žrtva je preminula u Urgentnom centru nakon dve operacije. Odbranu okrivljenog vodi advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, koja je na glavnom pretresu aktivno ispitivala svedoke — policijskog inspektora i majku ubijenog. Branilac je prigovorila na iskaz inspektora o identifikaciji izvršioca sa nadzorne kamere, ističući da se ni veštak nije mogao izjasniti o tome zbog lošeg kvaliteta snimka.' data-en='The trial of Srđan Pejdić began before the Higher Court in Belgrade. He is accused of ambushing Miloš Pešić on 29 July 2025 in Ledine and firing 14 bullets at him from a silenced pistol. The victim died at the Emergency Centre following two operations. The defendant is represented by attorney <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, who actively cross-examined witnesses at the main hearing — a police inspector and the victim&apos;s mother. The defence counsel objected to the inspector&apos;s testimony regarding the identification of the perpetrator from CCTV footage, noting that even the forensic expert was unable to render an opinion due to the poor quality of the recording.'>Pred Višim sudom u Beogradu počelo je suđenje Srđanu Pejdiću, optuženom da je 29. jula 2025. godine na Ledinama u zasedi sačekao Miloša Pešića i i u njega ispalio 14 metaka iz pištolja sa prigušivačem. Žrtva je preminula u Urgentnom centru nakon dve operacije. Odbranu okrivljenog vodi advokat <span style="color:var(--gold-light);font-style:italic;">Ana Petričević</span>, koja je na glavnom pretresu aktivno ispitivala svedoke — policijskog inspektora i majku ubijenog. Branilac je prigovorila na iskaz inspektora o identifikaciji izvršioca sa nadzorne kamere, ističući da se ni veštak nije mogao izjasniti o tome zbog lošeg kvaliteta snimka.</p>
-      <div class="case-result" data-sr="Suđenje u toku · Viši sud Beograd · 2026" data-en="Trial ongoing · Higher Court Belgrade · 2026">Suđenje u toku · Viši sud Beograd · 2026</div>
-      <blockquote class="case-quote" data-sr="&ldquo;Aktivnom odbranom i preciznim ispitivanjem svedoka osiguravamo da svaka činjenica bude temeljno proverena pred sudom.&rdquo;" data-en="&ldquo;Through active defence and precise cross-examination, we ensure that every fact is thoroughly verified before the court.&rdquo;">&ldquo;Aktivnom odbranom i preciznim ispitivanjem svedoka osiguravamo da svaka činjenica bude temeljno proverena pred sudom.&rdquo;</blockquote>
-      <a href="https://www.novosti.rs/hronika/sudjenja/1607448/zrtvu-sasuto-14-metaka-kamere-snimile-napadaca-pocelo-sudjenje-ubistvo-milosa-pesica-ledinama" target="_blank" class="case-link" data-sr="Pročitajte članak" data-en="Read article">Pročitajte članak</a>
-    </div>
-  </div>
-  <div class="svg-divider">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-      <polygon points="0,0 1440,0 1440,60 0,0" fill="#f7f2ea"/>
-    </svg>
   </div>
 </section>
-
 <!-- IZJAVE -->
-<section id="izjave" style="background: var(--cream); padding: 120px 0;">
-  <div style="max-width: 1100px; margin: 0 auto; padding: 0 80px;">
+<section id="izjave" style="background: var(--cream); padding: 80px 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 100px;">
     <div style="text-align:center; margin-bottom: 72px;">
-      <p class="section-label reveal" data-sr="Izjave za medije" data-en="Media Statements">Izjave za medije</p>
-      <h2 class="section-title reveal" data-sr="Stav struke" data-en="Expert Opinion">Stav struke</h2>
+      <h2 class="section-title reveal" data-sr="Izjave za medije" data-en="Media Statements">Izjave za medije</h2>
+
       <div class="section-divider reveal" style="margin: 0 auto;"></div>
     </div>
     <!-- Izjava -->
@@ -1432,15 +1487,9 @@
       </div>
     </div>
   </div>
-  <div class="svg-divider">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-      <polygon points="0,0 1440,60 0,60" fill="#2e2b28"/>
-    </svg>
-  </div>
 </section>
-
 <!-- CONTACT -->
-<section id="contact" style="background: #2e2b28; padding: 90px 80px 60px;">
+<section id="contact" style="background: #2e2b28; padding: 60px 80px 40px;">
   <div style="max-width: 960px; margin: 0 auto; text-align: center;">
     <p class="section-label reveal" style="color:var(--gold);" data-sr="Kontakt" data-en="Contact">Kontakt</p>
     <h2 class="section-title reveal" style="color:white;" data-sr="Stupite u kontakt" data-en="Get in touch">Stupite u kontakt</h2>
@@ -1452,7 +1501,7 @@
         <p class="ci-t" style="color:rgba(255,255,255,0.4);" data-sr="Email" data-en="Email">Email</p>
         <div style="width:28px;height:1px;background:var(--gold);margin:12px auto;"></div>
         <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:white; line-height:1.5;">
-          petricevic.legal@gmail.com
+          <a href="https://mail.google.com/mail/?view=cm&to=petricevic.legal@gmail.com" target="_blank" style="color:white;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='white'">petricevic.legal@gmail.com</a>
           <button class="copy-btn copy-dark" onclick="copyText('petricevic.legal@gmail.com', this)" aria-label="Kopiraj email">⧉<span class="copy-tip">Kopirano!</span></button>
         </p>
       </div>
@@ -1469,7 +1518,7 @@
       <div class="contact-col">
         <p class="ci-t" style="color:rgba(255,255,255,0.4);" data-sr="Adresa" data-en="Address">Adresa</p>
         <div style="width:28px;height:1px;background:var(--gold);margin:12px auto;"></div>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:white; line-height:1.5;">Njegoševa 8<br>Vračar, Beograd</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:white; line-height:1.5;"><a href="https://maps.google.com/?q=Njegoševa+8,+Vračar,+Beograd" target="_blank" style="color:white;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='white'">Njegoševa 8<br>Vračar, Beograd</a></p>
       </div>
     </div>
 
@@ -1479,7 +1528,7 @@
       <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
         <a href="https://www.instagram.com/petricevic_law/" target="_blank" class="social-link-dark">Instagram</a>
         <a href="https://www.facebook.com/ana.petricevic.92/" target="_blank" class="social-link-dark">Facebook</a>
-        <a href="https://www.linkedin.com/posts/ana-petri%C4%8Devi%C4%87-501642183_advokat-pravosuafne-kriviafjnopravnaodbrana-share-7394352118293344257-TjHi/" target="_blank" class="social-link-dark">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/ana-petri%C4%8Devi%C4%87-501642183/" target="_blank" class="social-link-dark">LinkedIn</a>
       </div>
     </div>
   </div>
