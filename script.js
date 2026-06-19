@@ -50,8 +50,8 @@ function scrollToEl(el, duration) {
   smoothScrollTo(top, duration || 1100);
 }
 
-// Nav links (desktop)
-document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+// Nav links + hero CTA buttons
+document.querySelectorAll('.nav-links a[href^="#"], .hero-btns a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) { e.preventDefault(); scrollToEl(target); }
