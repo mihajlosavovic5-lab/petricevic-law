@@ -1053,6 +1053,11 @@ footer span { color: var(--gold-light); }
     border-color: rgba(255,255,255,0.45) !important;
     color: white !important;
   }
+  .hero-btns .btn-outline:hover {
+    background: transparent !important;
+    color: white !important;
+    transform: none !important;
+  }
   .hero-badge { display: none !important; }
   .hero-eyebrow { display: none !important; }
 

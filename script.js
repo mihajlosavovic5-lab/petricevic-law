@@ -40,6 +40,11 @@ function smoothScrollTo(targetY, duration) {
     const progress = Math.min(elapsed / duration, 1);
     window.scrollTo(0, startY + diff * ease(progress));
     if (progress < 1) requestAnimationFrame(step);
+    else {
+      window.scrollTo(0, targetY);
+      document.documentElement.scrollTop = targetY;
+      document.body.scrollTop = targetY;
+    }
   }
   requestAnimationFrame(step);
 }
@@ -60,9 +65,10 @@ document.querySelectorAll('.nav-links a[href^="#"], .hero-btns a[href^="#"]').fo
 
 // ── BACK TO TOP ──
 const backToTop = document.getElementById('backToTop');
-backToTop.addEventListener('click', e => {
-  e.preventDefault();
-  smoothScrollTo(0, 1400);
+backToTop.addEventListener('click', () => {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 });
 window.addEventListener('scroll', () => {
   if (window.scrollY > 400) {
@@ -184,6 +190,7 @@ hamburger.addEventListener('click', () => {
   mobileNav.classList.toggle('open');
   const isOpen = mobileNav.classList.contains('open');
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  document.documentElement.style.overflow = isOpen ? 'hidden' : '';
   backToTop.style.opacity = isOpen ? '0' : (window.scrollY > 400 ? '1' : '0');
   backToTop.style.pointerEvents = isOpen ? 'none' : (window.scrollY > 400 ? 'auto' : 'none');
 });
@@ -191,6 +198,7 @@ const closeNav = () => {
   hamburger.classList.remove('open');
   mobileNav.classList.remove('open');
   document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
   if (window.scrollY > 400) {
     backToTop.style.opacity = '1';
     backToTop.style.pointerEvents = 'auto';
