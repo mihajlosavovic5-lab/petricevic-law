@@ -66,12 +66,7 @@ document.querySelectorAll('.nav-links a[href^="#"], .hero-btns a[href^="#"]').fo
 // ── BACK TO TOP ──
 const backToTop = document.getElementById('backToTop');
 backToTop.addEventListener('click', () => {
-  window.scrollTo(0, 1);
-  requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  });
+  smoothScrollTo(0, 1400);
 });
 window.addEventListener('scroll', () => {
   if (window.scrollY > 400) {
