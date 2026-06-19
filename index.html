@@ -1967,19 +1967,20 @@
   // ── ACTIVE NAV LINK ──
   const navSectionIds = ['home', 'about', 'oblasti', 'cases', 'izjave', 'contact'];
   const navLinkEls = document.querySelectorAll('.nav-links a');
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinkEls.forEach(a => a.classList.remove('active'));
-        const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-        if (link) link.classList.add('active');
-      }
+  function updateActiveNav() {
+    const navH = document.getElementById('navbar').offsetHeight;
+    const scrollY = window.scrollY + navH + 10;
+    let current = navSectionIds[0];
+    navSectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
     });
-  }, { threshold: 0.35 });
-  navSectionIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) sectionObserver.observe(el);
-  });
+    navLinkEls.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 
   // ── MOBILE MENU ──
   const hamburger = document.getElementById('hamburger');
