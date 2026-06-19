@@ -25,7 +25,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     :root {
       --cream: #f7f2ea;
@@ -38,7 +38,7 @@
       --nav-bg: rgba(247,242,234,0.97);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 
     body {
       font-family: 'Cormorant Garamond', serif;
@@ -220,37 +220,159 @@
     .mobile-nav {
       position: fixed;
       inset: 0;
-      background: var(--cream);
-      z-index: 90;
+      background: #0e0c0a;
+      z-index: 110;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      transform: translateX(100%);
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+      transform: translateX(-100%);
+      transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+      overflow: hidden;
     }
-    .mobile-nav.open { transform: translateX(0); }
-    .mobile-nav a {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--dark);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.3s;
-      position: relative;
-    }
-    .mobile-nav a::after {
+    .mobile-nav::before {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--gold);
-      transition: width 0.35s ease;
+      top: 64px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold) 0%, rgba(184,151,90,0.2) 60%, transparent 100%);
     }
-    .mobile-nav a:hover { color: var(--gold); }
-    .mobile-nav a:hover::after { width: 100%; }
+    .mobile-nav.open { transform: translateX(0); }
+
+    .mobile-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+    .mobile-nav-monogram {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .mobile-nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.02em;
+    }
+    .mobile-nav-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .mobile-nav-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .mobile-nav-links {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px 32px 0;
+    }
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(184,151,90,0.12);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: color 0.25s, padding-left 0.25s;
+      position: relative;
+    }
+    .mobile-nav a .mn-num {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .mobile-nav a .mn-arrow {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.25s;
+      flex-shrink: 0;
+    }
+    .mobile-nav a:active,
+    .mobile-nav a:hover { color: white; padding-left: 6px; }
+    .mobile-nav a:active .mn-arrow,
+    .mobile-nav a:hover .mn-arrow { opacity: 1; }
+
+    .mobile-nav-footer {
+      padding: 28px 32px 44px;
+      border-top: 1px solid rgba(184,151,90,0.1);
+      flex-shrink: 0;
+    }
+    .mobile-nav-footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+    .mobile-nav-footer-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mobile-nav-footer-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .mobile-nav-footer-loc {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .mobile-nav-bottom {
+      display: none;
+    }
+    .mobile-nav-contact-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .mobile-nav-contact-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 4px;
+    }
 
     .lang-toggle {
       cursor: pointer;
@@ -266,6 +388,17 @@
       object-fit: cover;
       display: block;
       box-shadow: 0 1px 5px rgba(0,0,0,0.18);
+    }
+
+    /* ── SECTION ENTRANCE ── */
+    .section-entrance {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 1.1s cubic-bezier(0.22,1,0.36,1), transform 1.1s cubic-bezier(0.22,1,0.36,1);
+    }
+    .section-entrance.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ── SCROLL REVEAL ── */
@@ -297,7 +430,7 @@
 
     /* ── HERO ── */
     #home {
-      height: 800px;
+      height: 600px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: stretch;
@@ -305,63 +438,14 @@
     }
 
     .hero-text {
-      padding: 0px 60px 80px 80px;
+      padding: 60px 60px 80px 80px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
-    .hero-eyebrow {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 26px;
-      overflow: hidden;
-    }
 
-    /* text clip reveal on load */
-    .clip-reveal {
-      display: inline-block;
-      transform: translateY(110%) skewY(4deg);
-      opacity: 0;
-      transition: transform 1s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
-    }
-    .clip-reveal.visible {
-      transform: translateY(0) skewY(0deg);
-      opacity: 1;
-    }
 
-    .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.6rem, 4vw, 3.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--dark);
-      margin-bottom: 12px;
-    }
-    .hero-name .line { overflow: hidden; display: block; }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--gold);
-      margin-bottom: 34px;
-      letter-spacing: 0.04em;
-    }
-
-    .hero-divider {
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 34px;
-      transition: width 1.2s ease 0.6s;
-    }
-    .hero-divider.visible { width: 55px; }
 
     .hero-desc {
       font-size: 1.18rem;
@@ -449,17 +533,15 @@
 
     .hero-badge {
       position: absolute;
-      bottom: 135px;
+      bottom: 60px;
       left: -24px;
       background: white;
       padding: 20px 28px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.08);
       border-left: 3px solid var(--gold);
-      transform: translateX(-20px);
-      opacity: 0;
-      transition: transform 1s ease 1s, opacity 1s ease 1s;
+      opacity: 1;
     }
-    .hero-badge.visible { transform: translateX(0); opacity: 1; }
+    .hero-badge.visible { opacity: 1; }
 
     .hero-badge .num {
       font-family: 'Playfair Display', serif;
@@ -552,6 +634,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 18px;
       margin-top: 42px;
+      align-items: start;
     }
 
     .cred-item {
@@ -581,17 +664,17 @@
     /* ── AWARDS ── */
     .awards-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
     .awards-list li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      font-size: 1.08rem;
+      gap: 12px;
+      font-size: 0.97rem;
       font-weight: 400;
-      line-height: 1.75;
+      line-height: 1.65;
       color: var(--text);
       padding: 12px 16px;
       background: var(--cream);
@@ -602,25 +685,28 @@
       transform: translateX(6px);
       box-shadow: -4px 0 0 var(--gold);
     }
-    .awards-list li::before {
+    .awards-list li::after {
       content: '★';
       color: var(--gold);
       font-size: 0.7rem;
-      margin-top: 3px;
+      margin-top: 5px;
       flex-shrink: 0;
+      order: -1;
     }
 
 
     /* ── CASES ── */
-    #cases { padding: 80px 0 0; background: #2e2b28; }
+    #cases { padding: 0 0 0; background: #2e2b28; }
 
     .cases-header {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 40px;
-      padding: 0 80px;
+      margin-bottom: 0;
+      padding: 44px 80px 36px;
       gap: 40px;
+      background: linear-gradient(to bottom, rgba(14,12,10,1) 0%, rgba(14,12,10,0.92) 100%);
+      border-top: 2px solid var(--gold);
     }
     .cases-header-left {
       border-left: 3px solid var(--gold);
@@ -796,7 +882,7 @@
     }
     .ce-film-04 .ce-content { max-width: 580px; }
 
-    .ce-film-05 { min-height: 600px; }
+    .ce-film-05 { min-height: 540px; }
     .ce-film-05 .ce-bg img {
       object-position: center top;
       filter: grayscale(15%) contrast(1.07) brightness(0.25);
@@ -955,8 +1041,164 @@
       .about-img { aspect-ratio: 4/3; }
       .credential-grid { grid-template-columns: 1fr; }
 
-
       #contact { padding: 70px 24px; }
+    }
+
+    /* ── MOBILE (iPhone 14 Pro Max i slično) ── */
+    @media (max-width: 480px) {
+      html, body { overflow-x: hidden; width: 100%; }
+      * { max-width: 100%; }
+
+      /* NAV */
+      nav { padding: 14px 18px; flex-direction: row-reverse; }
+      nav.scrolled { padding: 10px 18px; }
+      .nav-logo { order: 1; }
+      .logo-monogram { display: none; }
+      .hamburger { display: flex; order: 2; }
+      .lang-toggle { order: -1; }
+
+      /* HERO — fullscreen overlay layout */
+      #home {
+        display: block !important;
+        position: relative !important;
+        height: 100svh !important;
+        min-height: 640px !important;
+        overflow: hidden !important;
+        grid-template-columns: none !important;
+      }
+      .hero-image-wrap {
+        position: absolute !important;
+        inset: 0 !important;
+        height: 100% !important;
+        z-index: 0 !important;
+      }
+      .hero-image-wrap img {
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        transform: none !important;
+      }
+      .hero-image-overlay {
+        background: linear-gradient(to bottom, rgba(14,12,10,0.25) 0%, rgba(14,12,10,0.65) 50%, rgba(14,12,10,0.92) 100%) !important;
+      }
+      .hero-text {
+        position: absolute !important;
+        inset: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-end !important;
+        padding: 0 24px 52px !important;
+        z-index: 2 !important;
+        background: none !important;
+      }
+      .hero-eyebrow { color: var(--gold-light) !important; margin-top: 0 !important; }
+      .hero-text h1 {
+        color: white !important;
+        font-size: 2.8rem !important;
+        margin-bottom: 14px !important;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+      }
+      .hero-desc {
+        color: rgba(255,255,255,0.80) !important;
+        font-size: 1.05rem !important;
+        line-height: 1.85 !important;
+        max-width: 100% !important;
+        margin-top: 0 !important;
+        margin-bottom: 28px !important;
+      }
+      .hero-btns {
+        position: static !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+      .hero-btns .btn-primary,
+      .hero-btns .btn-outline {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 16px 0 !important;
+        box-sizing: border-box !important;
+      }
+      .hero-btns .btn-outline {
+        border-color: rgba(255,255,255,0.45) !important;
+        color: white !important;
+      }
+      .hero-badge { display: none !important; }
+      .hero-eyebrow { display: none !important; }
+
+      /* ABOUT */
+      #about { padding: 24px 20px 40px; gap: 0; }
+      .about-sticky { display: none; }
+      .about-text { padding-top: 12px; }
+      .about-img { aspect-ratio: 3/2; }
+      .section-title { font-size: 1.75rem; }
+      .about-text p { font-size: 1.05rem; line-height: 1.95; }
+      .credential-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .cred-item { padding: 10px 12px; }
+      .cred-item .ci-val { font-size: 0.9rem; }
+      #awards-block { margin-top: 28px; }
+      #awards-block .credential-grid { grid-template-columns: 1fr 1fr; }
+      #awards-block .ci-val { white-space: normal !important; font-size: 0.82rem; }
+
+      /* OBLASTI */
+      #oblasti { padding: 0 0 40px !important; }
+      #oblasti > div { padding: 0 !important; max-width: 100% !important; }
+      #oblasti > div > div:first-child { display: flex !important; flex-direction: column !important; align-items: center !important; padding: 24px 20px 0 !important; margin-bottom: 0 !important; }
+      #oblasti > div > div:first-child .section-title { font-size: 2.4rem !important; color: white !important; text-align: center !important; line-height: 1.1 !important; white-space: normal !important; }
+      #oblasti > div > div:first-child .section-divider { display: none !important; }
+      #oblasti > div > div:first-child .section-title::after { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); margin: 16px auto 0; opacity: 0.7; }
+      #oblasti .stagger { display: flex !important; flex-direction: column !important; gap: 2px !important; margin-top: 20px !important; }
+      #oblasti .stagger > div { padding: 26px 20px !important; border-top: 1px solid rgba(184,151,90,0.35) !important; }
+      #oblasti .stagger > div p:first-child { font-size: 1.15rem !important; }
+      #oblasti .stagger > div p:last-child { font-size: 0.97rem !important; line-height: 1.8 !important; }
+      #oblasti .reveal > div { grid-template-columns: 1fr !important; gap: 0 !important; }
+      #oblasti .reveal { padding: 20px 20px 8px !important; border-top: none !important; }
+
+      /* CASES */
+      #cases { padding: 0; }
+      .cases-header { padding: 32px 20px 24px !important; margin-bottom: 0 !important; }
+      .cases-header-left .section-title { font-size: 1.9rem; }
+      .cases-header-right { display: none; }
+      .ce-film { min-height: 480px !important; }
+      .ce-film .ce-bg { min-height: 480px !important; }
+      .ce-film .ce-content,
+      .ce-film-02 .ce-content,
+      .ce-film-03 .ce-content,
+      .ce-film-04 .ce-content { padding: 44px 20px 36px !important; max-width: 100% !important; margin: 0 !important; text-align: left !important; }
+      .ce-film-02 .case-divider,
+      .ce-film-03 .case-divider { margin-left: 0 !important; }
+      .ce-film .case-title { font-size: 1.4rem !important; }
+      .ce-film .case-result { font-size: 0.48rem; }
+      .ce-film-05 .ce-content { grid-template-columns: 1fr !important; gap: 28px !important; padding: 44px 20px 36px !important; max-width: 100% !important; }
+      .ce-film-05 .ce-col-left { border-left: none !important; padding-left: 0 !important; border-bottom: 1px solid rgba(184,151,90,0.3) !important; padding-bottom: 28px !important; }
+      .ce-film-05 .case-title { font-size: 1.35rem !important; }
+
+      /* IZJAVE */
+      #izjave { padding: 28px 20px 40px !important; }
+      #izjave > div { padding: 0 !important; }
+      #izjave > div > div:first-child { margin-bottom: 28px !important; }
+      #izjave > div > div:first-child .section-title { font-size: 1.9rem !important; }
+      #izjave > div > div:last-child { flex-direction: column !important; gap: 0 !important; align-items: stretch !important; }
+      #izjave > div > div:last-child > div:first-child { display: none !important; }
+      #izjave > div > div:last-child > div:last-child { flex: 1 !important; }
+      #izjave > div > div:last-child > div:last-child > div { padding-left: 16px !important; border-left-width: 2px !important; }
+      #izjave > div > div:last-child > div:last-child > div p:first-child { font-size: 1.2rem !important; }
+      #izjave > div > div:last-child > div:last-child > div p:nth-child(3) { font-size: 0.97rem !important; line-height: 1.85 !important; margin-bottom: 20px !important; }
+
+      /* CONTACT */
+      #contact { padding: 52px 20px 40px !important; }
+      .contact-row { gap: 28px; }
+      .contact-col { padding: 0; text-align: center; }
+      .contact-vline { width: 40px; height: 1px; margin: 0 auto; }
+      #contact > div > div:last-child { margin-top: 8px; padding-top: 8px; }
+      #contact .section-divider { margin-bottom: 52px !important; }
+      #contact > div > div:last-child > div { flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+      /* FOOTER */
+      footer { padding: 24px 20px; }
     }
 
 
@@ -988,6 +1230,7 @@
     }
     #oblasti::before, #cases::before, #contact::before { top: 0; }
     #oblasti::after,  #cases::after,  #contact::after  { bottom: 0; }
+
 
     /* ── INLINE QUOTE ── */
     .inline-quote {
@@ -1077,27 +1320,32 @@
     }
     .copy-btn.copied .copy-tip { opacity: 1; }
 
+    /* ── AWARDS BLOCK ── */
+    #awards-block .cred-item { padding: 10px 14px; }
+    #awards-block .ci-val { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
     /* ── AWARD TOOLTIPS ── */
     .awards-list li { position: relative; }
     .awards-list li[data-tooltip]::before {
       content: attr(data-tooltip);
       position: absolute;
-      bottom: calc(100% + 8px);
+      bottom: calc(100% + 10px);
       left: 0;
-      background: var(--dark);
-      color: rgba(255,255,255,0.85);
+      background: #111;
+      color: rgba(255,255,255,0.88);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      line-height: 1.5;
-      letter-spacing: 0.06em;
-      padding: 8px 14px;
-      max-width: 280px;
+      font-size: 0.65rem;
+      line-height: 1.65;
+      letter-spacing: 0.05em;
+      padding: 14px 18px;
+      max-width: 340px;
       pointer-events: none;
       opacity: 0;
-      transform: translateY(4px);
+      transform: translateY(6px);
       transition: opacity 0.25s, transform 0.25s;
       z-index: 10;
-      border-left: 2px solid var(--gold);
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     }
     .awards-list li[data-tooltip]:hover::before {
       opacity: 1;
@@ -1161,9 +1409,10 @@
   z-index: 150;
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, color 0.3s;
+  transition: opacity 0.4s ease, transform 0.4s ease;
   pointer-events: none;
-" onmouseover="this.style.background='var(--gold)';this.style.color='white';" onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">↑</a>
+  background: transparent;
+">↑</a>
 
 <!-- LOADER -->
 <div id="loader">
@@ -1183,8 +1432,8 @@
   <ul class="nav-links">
     <li><a href="#home"    data-sr="Početna"  data-en="Home">Početna</a></li>
     <li><a href="#about"   data-sr="O meni"   data-en="About">O meni</a></li>
-    <li><a href="#cases"   data-sr="Slučajevi" data-en="Cases">Slučajevi</a></li>
     <li><a href="#oblasti" data-sr="Usluge" data-en="Services">Usluge</a></li>
+    <li><a href="#cases"   data-sr="Slučajevi" data-en="Cases">Slučajevi</a></li>
     <li><a href="#contact" data-sr="Kontakt"  data-en="Contact">Kontakt</a></li>
   </ul>
   <button class="lang-toggle" id="langBtn" title="Prebaci na engleski">
@@ -1197,27 +1446,41 @@
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#home"    data-sr="Početna"   data-en="Home">Početna</a>
-  <a href="#about"   data-sr="O meni"    data-en="About">O meni</a>
-  <a href="#cases"   data-sr="Slučajevi" data-en="Cases">Slučajevi</a>
-  <a href="#oblasti" data-sr="Usluge"    data-en="Services">Usluge</a>
-  <a href="#contact" data-sr="Kontakt"   data-en="Contact">Kontakt</a>
+  <div class="mobile-nav-top">
+    <div class="mobile-nav-monogram">AP</div>
+    <div>
+      <div class="mobile-nav-name">Ana Petričević</div>
+      <div class="mobile-nav-sub" data-sr="Advokat" data-en="Attorney at Law">Advokat</div>
+    </div>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Zatvori meni">✕</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="#home"><span class="mn-num"></span><span data-sr="Početna" data-en="Home">Početna</span><span class="mn-arrow">→</span></a>
+    <a href="#about"><span class="mn-num"></span><span data-sr="O meni" data-en="About">O meni</span><span class="mn-arrow">→</span></a>
+    <a href="#oblasti"><span class="mn-num"></span><span data-sr="Usluge" data-en="Services">Usluge</span><span class="mn-arrow">→</span></a>
+    <a href="#cases"><span class="mn-num"></span><span data-sr="Slučajevi" data-en="Cases">Slučajevi</span><span class="mn-arrow">→</span></a>
+    <a href="#contact"><span class="mn-num"></span><span data-sr="Kontakt" data-en="Contact">Kontakt</span><span class="mn-arrow">→</span></a>
+  </div>
+  <div class="mobile-nav-footer">
+    <div class="mobile-nav-footer-tagline" data-sr="Stručnost, poverenje i posvećenost." data-en="Expertise, trust and dedication.">Stručnost, poverenje i posvećenost.</div>
+    <div class="mobile-nav-footer-line">
+      <div class="mobile-nav-footer-dot"></div>
+      <div class="mobile-nav-footer-loc" data-sr="Beograd, Srbija" data-en="Belgrade, Serbia">Beograd, Srbija</div>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
 <section id="home">
   <div class="hero-text" style="position:relative;">
-    <p class="hero-eyebrow">
-      <span class="clip-reveal" data-sr="Advokat · Beograd, Srbija" data-en="Attorney at Law · Belgrade, Serbia">Advokat · Beograd, Srbija</span>
+    <p class="hero-eyebrow" style="font-family:'Montserrat',sans-serif; font-size:0.65rem; font-weight:400; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; margin-top:55px;">
+      <span data-sr="Advokat · Beograd, Srbija" data-en="Attorney at Law · Belgrade, Serbia">Advokat · Beograd, Srbija</span>
     </p>
-    <h1 class="hero-name">
-      <span class="line"><span class="clip-reveal" style="transition-delay:0.1s">Ana</span></span>
-      <span class="line"><span class="clip-reveal" style="transition-delay:0.2s">Petričević</span></span>
+    <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.5vw,3.2rem); font-weight:700; line-height:1.1; color:var(--dark); margin-bottom:20px;">
+      Ana<br>Petričević
     </h1>
-    <p class="hero-title reveal" style="transition-delay:0.35s" data-sr="Advokat" data-en="Attorney at Law">Advokat</p>
-    <div class="hero-divider" id="heroDivider"></div>
-    <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 190px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
-    <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:140px; left:80px; width:340px;">
+    <p class="hero-desc reveal" style="transition-delay:0.5s; margin-bottom: 0; min-height: 0; margin-top: 50px;" data-sr="Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom." data-en="Expertise, trust and dedication. Providing legal services across all areas of law in Serbia and beyond, in accordance with the law.">Stručnost, poverenje i posvećenost. Pružam pravne usluge iz svih oblasti prava na teritoriji Srbije i van njenih granica, u skladu sa zakonom.</p>
+    <div class="reveal hero-btns" style="transition-delay:0.65s; position:absolute; bottom:60px; left:80px; width:340px;">
       <a href="#contact" class="btn-primary" style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="Kontaktirajte me" data-en="Get in touch">Kontaktirajte me</a>
       <a href="#about"   class="btn-outline"  style="width:162px; text-align:center; padding-left:0; padding-right:0;" data-sr="O meni"          data-en="Learn more">O meni</a>
     </div>
@@ -1236,7 +1499,7 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="section-entrance">
   <div class="about-sticky reveal from-left">
     <picture>
       <source srcset="3.webp" type="image/webp" />
@@ -1257,7 +1520,7 @@
     <div class="credential-grid stagger">
       <div class="cred-item">
         <div class="ci-lbl" data-sr="Obrazovanje" data-en="Education">Obrazovanje</div>
-        <div class="ci-val" data-sr="Pravni fakultet, Univerzitet u Beogradu" data-en="Faculty of Law, University of Belgrade">Pravni fakultet, Univerzitet u Beogradu</div>
+        <div class="ci-val" data-sr="Pravni fakultet, Beograd" data-en="Faculty of Law, Belgrade">Pravni fakultet, Beograd</div>
       </div>
       <div class="cred-item">
         <div class="ci-lbl" data-sr="Prosečna ocena" data-en="GPA">Prosečna ocena</div>
@@ -1265,45 +1528,42 @@
       </div>
       <div class="cred-item">
         <div class="ci-lbl" data-sr="Članstvo" data-en="Membership">Članstvo</div>
-        <div class="ci-val" data-sr="Advokatska komora Beograda i Srbije" data-en="Belgrade &amp; Serbia Bar Association">Advokatska komora Beograda i Srbije</div>
+        <div class="ci-val" data-sr="Komora Beograda i Srbije" data-en="Belgrade &amp; Serbia Bar">Komora Beograda i Srbije</div>
       </div>
       <div class="cred-item">
         <div class="ci-lbl" data-sr="Ispiti" data-en="Exams">Ispiti</div>
         <div class="ci-val" data-sr="Pravosudni i advokatski ispit" data-en="Judicial &amp; Bar Exam">Pravosudni i advokatski ispit</div>
       </div>
-    <!-- YouTube video -->
-    <div style="margin-top:44px; margin-bottom:44px;">
-      <p class="section-label reveal" style="margin-bottom:16px;" data-sr="Emisija" data-en="TV Feature">Emisija</p>
-      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
-        <iframe src="https://www.youtube.com/embed/H2P8zK9Ub7c" title="Šampioni znanja — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+    </div><!-- kraj credential-grid -->
+    <div class="awards-block reveal" style="margin-top:44px;" id="awards-block">
+      <p class="section-label" style="margin-bottom:20px; white-space:nowrap;" data-sr="Nagrade i priznanja" data-en="Awards & Honours">Nagrade i priznanja</p>
+      <div class="credential-grid stagger" style="grid-template-columns: 1fr 1fr;">
+        <div class="cred-item" data-tooltip="Prestižna zadužbina koja od 1935. nagrađuje najboljim studentima prava u Srbiji">
+          <div class="ci-lbl" data-sr="Nagrada" data-en="Award">Nagrada</div>
+          <div class="ci-val" data-sr="Zadužbina Jovanovića i Ćelovića" data-en="Jovanović &amp; Ćelović Endowment">Zadužbina Jovanovića i Ćelovića</div>
+        </div>
+        <div class="cred-item" data-tooltip="Međunarodno takmičenje u simulaciji sudskog postupka — studenti vode stvaran sudski spor pred komisijom profesora i sudija">
+          <div class="ci-lbl" data-sr="Takmičenje" data-en="Competition">Takmičenje</div>
+          <div class="ci-val" data-sr="Bronzana medalja — Moot Court" data-en="Bronze Medal — Moot Court">Bronzana medalja — Moot Court</div>
+        </div>
+        <div class="cred-item" data-tooltip="Državna stipendija Vlade Republike Srbije za studente sa prosečnom ocenom 10,00">
+          <div class="ci-lbl" data-sr="Stipendija" data-en="Scholarship">Stipendija</div>
+          <div class="ci-val" data-sr="Fond za mlade talente" data-en="Fund for Young Talents">Fond za mlade talente</div>
+        </div>
+        <div class="cred-item" data-tooltip="Zvanično pismeno prizanje Pravnog fakulteta koje se retko dodeljuje — samo studentima sa savršenim uspehom">
+          <div class="ci-lbl" data-sr="Pohvalnica" data-en="Commendation">Pohvalnica</div>
+          <div class="ci-val" data-sr="Pravni fakultet, Beograd" data-en="Faculty of Law, Belgrade">Pravni fakultet, Beograd</div>
+        </div>
+        <div class="cred-item" data-tooltip="Najviše akademsko prizanje generacije — dodeljuje se jednom studentu koji je završio studije sa prosekom 10,00">
+          <div class="ci-lbl" data-sr="Titula" data-en="Title">Titula</div>
+          <div class="ci-val" data-sr="Student generacije — prosečna ocena 10,00" data-en="Valedictorian — GPA 10.00">Student generacije — prosečna ocena 10,00</div>
+        </div>
       </div>
-      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px; margin-bottom:24px;" data-sr="Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet" data-en="TV show „Šampioni znanja" — TV Brainz / Faculty of Law">Emisija „Šampioni znanja" — TV Brainz / Pravni fakultet</p>
-
-      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
-        <iframe src="https://www.youtube.com/embed/1tfqAN7jiIs?t=78" title="Emisija — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
-      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px; margin-bottom:24px;">LINK VIP – Pravnica koja je uzor mladim ljudima · Epizoda 20</p>
-
-      <div class="reveal scale-in" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(184,151,90,0.25);">
-        <iframe src="https://www.youtube.com/embed/mrAcHlwP_Ug?t=368" title="Emisija — Ana Petričević" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
-      <p class="reveal" style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-light); margin-top:10px;">STUDENICA PODKAST – Fabula docet · Možeš! Veruj! Uspećeš! · Epizoda 4</p>
-    </div>
-
-    <div class="awards-block reveal" style="margin-top:44px;">
-      <p class="section-label" style="margin-bottom:20px;" data-sr="Nagrade i priznanja" data-en="Awards & Honours">Nagrade i priznanja</p>
-      <ul class="awards-list stagger">
-        <li data-sr="Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića" data-en="Award of the Milivoje Jovanović and Luka Ćelović Endowment" data-tooltip="Prestižna zadužbina koja od 1935. nagrađuje najboljim studentima prava u Srbiji">Nagrada Zadužbine Milivoja Jovanovića i Luke Ćelovića</li>
-        <li data-sr="Bronzana medalja — simulacija suđenja „Moot Court"" data-en="Bronze Medal — Moot Court simulation" data-tooltip="Međunarodno takmičenje u simulaciji sudskog postupka — studenti vode stvaran sudski spor pred komisijom profesora i sudija">Bronzana medalja — simulacija suđenja „Moot Court"</li>
-        <li data-sr="Stipendista Fonda za mlade talente" data-en="Scholar of the Fund for Young Talents" data-tooltip="Državna stipendija Vlade Republike Srbije za studente sa prosečnom ocenom 10,00">Stipendista Fonda za mlade talente</li>
-        <li data-sr="Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu" data-en="Commendation for Outstanding Achievement, Faculty of Law, University of Belgrade" data-tooltip="Zvanično pismeno prizanje Pravnog fakulteta koje se retko dodeljuje — samo studentima sa savršenim uspehom">Pohvalnica za izuzetan uspeh, Pravni fakultet Univerziteta u Beogradu</li>
-        <li data-sr="Student generacije — prosečna ocena 10,00" data-en="Valedictorian of the generation — GPA 10.00" data-tooltip="Najviše akademsko prizanje generacije — dodeljuje se jednom studentu koji je završio studije sa prosekom 10,00">Student generacije — prosečna ocena 10,00</li>
-      </ul>
     </div>
   </div>
 </section>
 <!-- OBLASTI PRAKSE -->
-<section id="oblasti" style="background: #2e2b28; padding: 80px 80px;">
+<section id="oblasti" class="section-entrance" style="background: #2e2b28; padding: 80px 80px;">
   <div style="max-width: 1100px; margin: 0 auto;">
     <div style="text-align:center; margin-bottom: 72px;">
       <h2 class="section-title reveal" style="color:white;" data-sr="Pravne usluge" data-en="Legal Services">Pravne usluge</h2>
@@ -1312,17 +1572,17 @@
 
     <!-- Glavne usluge -->
     <div class="stagger" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 64px;">
-      <div style="background:#3a3632; padding:36px 32px; border-top: 2px solid var(--gold);">
-        <p style="font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:600; color:white; margin-bottom:14px;" data-sr="Zastupanje" data-en="Representation">Zastupanje</p>
-        <p style="font-size:0.95rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.68);" data-sr="Zastupanje domaćih i stranih pravnih i fizičkih lica pred svim sudovima i organima uprave — u građanskim sporovima, pred Ustavnim sudom, u postupcima izvršenja i svim ostalim vrstama postupaka." data-en="Representation of domestic and foreign legal entities and individuals before all courts and administrative bodies — in civil disputes, before the Constitutional Court, in enforcement proceedings and all other types of proceedings.">Zastupanje domaćih i stranih pravnih i fizičkih lica pred svim sudovima i organima uprave — u građanskim sporovima, pred Ustavnim sudom, u postupcima izvršenja i svim ostalim vrstama postupaka.</p>
+      <div style="background:#3a3632; padding:40px 36px; border-top: 2px solid var(--gold);">
+        <p style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; color:white; margin-bottom:16px;" data-sr="Zastupanje" data-en="Representation">Zastupanje</p>
+        <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Zastupanje domaćih i stranih pravnih i fizičkih lica pred svim sudovima i organima uprave — u građanskim sporovima, pred Ustavnim sudom, u postupcima izvršenja i svim ostalim vrstama postupaka." data-en="Representation of domestic and foreign legal entities and individuals before all courts and administrative bodies — in civil disputes, before the Constitutional Court, in enforcement proceedings and all other types of proceedings.">Zastupanje domaćih i stranih pravnih i fizičkih lica pred svim sudovima i organima uprave — u građanskim sporovima, pred Ustavnim sudom, u postupcima izvršenja i svim ostalim vrstama postupaka.</p>
       </div>
-      <div style="background:#3a3632; padding:36px 32px; border-top: 2px solid var(--gold);">
-        <p style="font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:600; color:white; margin-bottom:14px;" data-sr="Krivično pravo" data-en="Criminal Law">Krivično pravo</p>
-        <p style="font-size:0.95rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.68);" data-sr="Odbrana u svim krivičnim postupcima pred svim sudovima, pred prekršajnim sudom i u privrednim prestupima, kao i zastupanje oštećenih — sa sertifikatima za zastupanje maloletnih lica." data-en="Defence in all criminal proceedings before all courts, misdemeanour courts and economic offence proceedings, as well as representation of victims — including certification for representing minors.">Odbrana u svim krivičnim postupcima pred svim sudovima, pred prekršajnim sudom i u privrednim prestupima, kao i zastupanje oštećenih — sa sertifikatima za zastupanje maloletnih lica.</p>
+      <div style="background:#3a3632; padding:40px 36px; border-top: 2px solid var(--gold);">
+        <p style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; color:white; margin-bottom:16px;" data-sr="Krivično pravo" data-en="Criminal Law">Krivično pravo</p>
+        <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Odbrana u svim krivičnim postupcima pred svim sudovima, pred prekršajnim sudom i u privrednim prestupima, kao i zastupanje oštećenih — sa sertifikatima za zastupanje maloletnih lica." data-en="Defence in all criminal proceedings before all courts, misdemeanour courts and economic offence proceedings, as well as representation of victims — including certification for representing minors.">Odbrana u svim krivičnim postupcima pred svim sudovima, pred prekršajnim sudom i u privrednim prestupima, kao i zastupanje oštećenih — sa sertifikatima za zastupanje maloletnih lica.</p>
       </div>
-      <div style="background:#3a3632; padding:36px 32px; border-top: 2px solid var(--gold);">
-        <p style="font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:600; color:white; margin-bottom:14px;" data-sr="Privredno i ugovorno pravo" data-en="Corporate & Contract Law">Privredno i ugovorno pravo</p>
-        <p style="font-size:0.95rem; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.68);" data-sr="Registracija svih vrsta privrednih društava i ustanova, sačinjavanje svih vrsta ugovora i pružanje konsultantskih usluga iz svih oblasti prava." data-en="Registration of all types of companies and institutions, drafting of all types of contracts and providing consultancy services across all areas of law.">Registracija svih vrsta privrednih društava i ustanova, sačinjavanje svih vrsta ugovora i pružanje konsultantskih usluga iz svih oblasti prava.</p>
+      <div style="background:#3a3632; padding:40px 36px; border-top: 2px solid var(--gold);">
+        <p style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; color:white; margin-bottom:16px;" data-sr="Privredno i ugovorno pravo" data-en="Corporate & Contract Law">Privredno i ugovorno pravo</p>
+        <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Registracija svih vrsta privrednih društava i ustanova, sačinjavanje svih vrsta ugovora i pružanje konsultantskih usluga iz svih oblasti prava." data-en="Registration of all types of companies and institutions, drafting of all types of contracts and providing consultancy services across all areas of law.">Registracija svih vrsta privrednih društava i ustanova, sačinjavanje svih vrsta ugovora i pružanje konsultantskih usluga iz svih oblasti prava.</p>
       </div>
     </div>
 
@@ -1332,29 +1592,29 @@
         <div class="reveal from-left" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">⚖</div>
           <div>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Šengen zona" data-en="Schengen Zone">Šengen zona</p>
-            <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.68);" data-sr="Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima." data-en="Lifting and removal of entry bans to the Schengen Zone — representing clients in proceedings before the competent foreign authorities.">Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;" data-sr="Šengen zona" data-en="Schengen Zone">Šengen zona</p>
+            <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima." data-en="Lifting and removal of entry bans to the Schengen Zone — representing clients in proceedings before the competent foreign authorities.">Ukidanje i brisanje zabrane ulaska u Šengen zonu — zastupanje klijenata u postupcima pred nadležnim inostranim organima.</p>
           </div>
         </div>
         <div class="reveal from-right" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">⏳</div>
           <div>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Zastarelost" data-en="Statute of Limitations">Zastarelost</p>
-            <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.68);" data-sr="Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca." data-en="The statute of limitations in criminal law entails the loss of the state's right to prosecute or enforce a sentence after the statutory period has elapsed — and is general in nature, regardless of the type of offence or offender.">Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;" data-sr="Zastarelost" data-en="Statute of Limitations">Zastarelost</p>
+            <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca." data-en="The statute of limitations in criminal law entails the loss of the state's right to prosecute or enforce a sentence after the statutory period has elapsed — and is general in nature, regardless of the type of offence or offender.">Zastarelost kao institut krivičnog prava podrazumeva gubitak prava države na krivično gonjenje ili izvršenje izrečene sankcije nakon proteka zakonskog roka — i opšta je, bez obzira na vrstu krivičnog dela ili učinioca.</p>
           </div>
         </div>
         <div class="reveal from-left" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">✦</div>
           <div>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Rehabilitacija" data-en="Rehabilitation">Rehabilitacija</p>
-            <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.68);" data-sr="Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva." data-en="Rehabilitation entails the reinstatement of a convicted person's former status and the erasure of their criminal past — with the aim of eliminating the discriminatory effects of a conviction and enabling the person to become a full member of society.">Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;" data-sr="Rehabilitacija" data-en="Rehabilitation">Rehabilitacija</p>
+            <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva." data-en="Rehabilitation entails the reinstatement of a convicted person's former status and the erasure of their criminal past — with the aim of eliminating the discriminatory effects of a conviction and enabling the person to become a full member of society.">Rehabilitacija podrazumeva ponovno uspostavljanje ranijeg položaja osuđenog lica i stavljanje u zaborav kriminalne prošlosti — sa ciljem da osuda nema diskriminirajuće efekte i da osuđeni postane punopravan član društva.</p>
           </div>
         </div>
         <div class="reveal from-right" style="display:flex; gap:20px; align-items:flex-start;">
           <div style="width:36px; height:36px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:0.9rem; margin-top:3px;">◈</div>
           <div>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;" data-sr="Konsultantske usluge" data-en="Legal Consultancy">Konsultantske usluge</p>
-            <p style="font-size:0.97rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.68);" data-sr="Pružanje konsultantskih usluga iz svih oblasti prava — za fizička i pravna lica, domaće i strane subjekte, sa fokusom na praktična i efikasna pravna rešenja." data-en="Providing legal consultancy services across all areas of law — for individuals and legal entities, domestic and foreign clients, with a focus on practical and efficient legal solutions.">Pružanje konsultantskih usluga iz svih oblasti prava — za fizička i pravna lica, domaće i strane subjekte, sa fokusom na praktična i efikasna pravna rešenja.</p>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;" data-sr="Konsultantske usluge" data-en="Legal Consultancy">Konsultantske usluge</p>
+            <p style="font-size:1.05rem; font-weight:400; line-height:1.9; color:rgba(255,255,255,0.82);" data-sr="Pružanje konsultantskih usluga iz svih oblasti prava — za fizička i pravna lica, domaće i strane subjekte, sa fokusom na praktična i efikasna pravna rešenja." data-en="Providing legal consultancy services across all areas of law — for individuals and legal entities, domestic and foreign clients, with a focus on practical and efficient legal solutions.">Pružanje konsultantskih usluga iz svih oblasti prava — za fizička i pravna lica, domaće i strane subjekte, sa fokusom na praktična i efikasna pravna rešenja.</p>
           </div>
         </div>
       </div>
@@ -1363,7 +1623,7 @@
 </section>
 
 <!-- CASES -->
-<section id="cases">
+<section id="cases" class="section-entrance">
   <div class="cases-header">
     <div class="cases-header-left reveal">
       <p class="cases-eyebrow" data-sr="Krivično pravo · Advokat Petričević" data-en="Criminal Law · Attorney Petričević">Krivično pravo · Advokat Petričević</p>
@@ -1457,7 +1717,7 @@
   </div>
 </section>
 <!-- IZJAVE -->
-<section id="izjave" style="background: var(--cream); padding: 80px 0;">
+<section id="izjave" class="section-entrance" style="background: var(--cream); padding: 80px 0;">
   <div style="max-width: 1100px; margin: 0 auto; padding: 0 100px;">
     <div style="text-align:center; margin-bottom: 72px;">
       <h2 class="section-title reveal" data-sr="Izjave za medije" data-en="Media Statements">Izjave za medije</h2>
@@ -1485,7 +1745,7 @@
   </div>
 </section>
 <!-- CONTACT -->
-<section id="contact" style="background: #2e2b28; padding: 60px 80px 40px;">
+<section id="contact" class="section-entrance" style="background: #2e2b28; padding: 60px 80px 40px;">
   <div style="max-width: 960px; margin: 0 auto; text-align: center;">
     <p class="section-label reveal" style="color:var(--gold);" data-sr="Kontakt" data-en="Contact">Kontakt</p>
     <h2 class="section-title reveal" style="color:white;" data-sr="Stupite u kontakt" data-en="Get in touch">Stupite u kontakt</h2>
@@ -1569,8 +1829,44 @@
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
+  // ── SMOOTH SCROLL ──
+  function smoothScrollTo(targetY, duration) {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let start = null;
+    function ease(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + diff * ease(progress));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function scrollToEl(el, duration) {
+    const navH = document.getElementById('navbar').offsetHeight;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH;
+    smoothScrollTo(top, duration || 1100);
+  }
+
+  // Nav links (desktop)
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); scrollToEl(target); }
+    });
+  });
+
   // ── BACK TO TOP ──
   const backToTop = document.getElementById('backToTop');
+  backToTop.addEventListener('click', e => {
+    e.preventDefault();
+    smoothScrollTo(0, 1400);
+  });
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
       backToTop.style.opacity = '1';
@@ -1591,6 +1887,17 @@
       heroImg.style.transform = `translateY(${y * 0.25}px)`;
     }
   });
+
+  // ── SECTION ENTRANCE ──
+  const sectionEntranceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        sectionEntranceObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.section-entrance').forEach(el => sectionEntranceObserver.observe(el));
 
   // ── SCROLL REVEAL ──
   const observer = new IntersectionObserver((entries) => {
@@ -1680,13 +1987,34 @@
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    const isOpen = mobileNav.classList.contains('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    backToTop.style.opacity = isOpen ? '0' : (window.scrollY > 400 ? '1' : '0');
+    backToTop.style.pointerEvents = isOpen ? 'none' : (window.scrollY > 400 ? 'auto' : 'none');
   });
+  const closeNav = () => {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+    if (window.scrollY > 400) {
+      backToTop.style.opacity = '1';
+      backToTop.style.pointerEvents = 'auto';
+    }
+  };
+  document.getElementById('mobileNavClose').addEventListener('click', closeNav);
   mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        closeNav();
+        const target = document.querySelector(href);
+        if (target) {
+          setTimeout(() => scrollToEl(target, 1100), 420);
+        }
+      } else {
+        closeNav();
+      }
     });
   });
 
